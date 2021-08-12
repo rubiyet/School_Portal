@@ -110,7 +110,7 @@
 		}
 		if(!$error){
 			$password = generateRandomString();
-			$query = "insert into alluser values(Null,'$userid','$password','$type','$status')";
+			$query = "insert into users values(Null,'$userid','$password','$type','$status')";
 			if($connect){
 				if(mysqli_query($connect,$query)){
 					$success_connect1 = "Successfully insert User ID ".$userid;

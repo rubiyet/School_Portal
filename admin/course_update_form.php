@@ -30,24 +30,24 @@
                                     <tr>
                                         <td valign="top">
                                             <table id="frameitem">  
-                                                <form action="" method="POST">
+                                                <form action="" onsubmit="return courseinsertvalidatebyjs()" method="POST">
                                                     <tr>
                                                         <td align="right" width="36%" id="subtitle">
                                                             Course ID<span id="star">* </span>: 
                                                         </td>
                                                         <td width="15%">
-                                                            <input type="text" name="courseid" value="<?php echo $courseid?>">
+                                                            <input id="courseid" type="text" name="courseid" value="<?php echo $courseid?>">
                                                         </td>
-                                                        <td width="49%"><span><?php echo $error_courseid;?></span></td>
+                                                        <td width="49%"><span id="error_courseid"><?php echo $error_courseid;?></span></td>
                                                     </tr>
                                                     <tr>
                                                         <td align="right" id="subtitle">
                                                             Course Name<span id="star">* </span>: 
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="coursename" value="<?php echo $coursename?>">
+                                                            <input id="coursename" type="text" name="coursename" value="<?php echo $coursename?>">
                                                         </td>
-                                                        <td><?php echo $error_coursename;?></td>
+                                                        <td><span id="error_coursename"><?php echo $error_coursename;?></span></td>
                                                     </tr>
                                                     <tr>
                                                         <td></td>
@@ -75,5 +75,6 @@
                 <td width="18.5%"></td>
             </tr>
         </table>
+        <script src="../controller/js_controller/admin_controller.js"></script>
     </body>
 </html>

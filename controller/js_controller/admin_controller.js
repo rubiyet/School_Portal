@@ -6,7 +6,7 @@ function get(id){
 
 function admininsertvalidatebyjs(){
 
-    refreshforinsert();
+    refreshadmininsertvalidatebyjs();
 
     if(get("adminid").value == ""){
         error = true;
@@ -306,7 +306,7 @@ function admininsertvalidatebyjs(){
 
 }
 
-function refreshforinsert(){
+function refreshadmininsertvalidatebyjs(){
     error = false;
     get("error_adminid").innerHTML = "";
     get("error_name").innerHTML = "";
@@ -330,7 +330,7 @@ function refreshforinsert(){
 
 function adminupdatevalidatebyjs(){
 
-    refreshforupdate();
+    refreshadminupdatevalidatebyjs();
 
     if(get("adminid").value == ""){
         error = true;
@@ -612,7 +612,7 @@ function adminupdatevalidatebyjs(){
 
 }
 
-function refreshforupdate(){
+function refreshadminupdatevalidatebyjs(){
     error = false;
     get("error_adminid").innerHTML = "";
     get("error_name").innerHTML = "";
@@ -631,4 +631,90 @@ function refreshforupdate(){
     get("error_presentaddress").innerHTML = "";
     get("error_parmanentaddress").innerHTML = "";
     get("error_contactnumber").innerHTML = "";
+}
+
+function courseinsertvalidatebyjs(){
+
+    refreshcourseinsertvalidatebyjs();
+
+    if(get("courseid").value == ""){
+        error = true;
+        get("error_courseid").innerHTML = "*Must Need Course ID";
+    }
+    else if(get("courseid").value.length != 7){
+        error = true;
+        get("error_courseid").innerHTML = "*Course ID must be 7 character.";
+    }
+    else{
+        var hypen = 0;
+        var number = 0;
+        var bug = 0;
+        var arr_courseid = get("courseid").value.split("");
+        if(arr_courseid[2] == "-"){
+            arr_courseid.forEach(function(ae){
+                if(ae == "-"){
+                    hypen++;
+                }
+                else if(ae >= 0 && ae <= 9){
+                    number++;
+                }
+                else{
+                    bug++;
+                }
+            });
+        }
+        else{
+            error = true;
+            get("error_courseid").innerHTML = "*Course Id like as (**-4***)";
+        }
+        if(arr_courseid[3] != "4"){
+            error = true;
+            get("error_courseid").innerHTML = "*Course Id like as (**-4***)";
+        }
+        else if(hypen > 1 || bug > 0){
+            error = true;
+            get("error_courseid").innerHTML = "*Course Id like as (**-4***)";
+        }
+    }
+
+    if(get("coursename").value == ""){
+        error = true;
+        get("error_coursename").innerHTML = "*Must be need Course Name";
+    }
+    else if(get("coursename").value.length < 2){
+        error = true;
+        get("error_coursename").innerHTML = "*Course name must be greater then 1 letter";
+    }
+    else{
+        var letter1 = 0;
+        var number1 = 0;
+        var space1 = 0;
+        var arr_coursename = get("coursename").value.split("");
+        arr_coursename.forEach(function(ac){
+            if(ac >= "A" && ac <= "Z"){
+                letter1++;
+            }
+            else if(ac >= "a" && ac <= "z"){
+                letter1++;
+            }
+            else if(ac == ' '){
+                space1++;
+            }
+            else if(ac >= 0 && ac <= 9){
+                number1++;
+            }
+        });
+        if(number1 >= 1){
+            error = true;
+            get("error_coursename").innerHTML = "*Course name must be contain only Letter";
+        }
+    }
+    return !error;
+
+}
+
+function refreshcourseinsertvalidatebyjs(){
+    error = false;
+    get("error_courseid").innerHTML = "";
+    get("error_coursename").innerHTML = "";
 }

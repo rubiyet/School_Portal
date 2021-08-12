@@ -22,20 +22,30 @@
 										<td colspan="3" id="title" valign="center">TEACHER PERSONAL INFORMATION UPDATE</td>
 									</tr>
 									<tr>
-										<td valign="top">
+										<td valign="top" align="center">
 											<table id="">
 												<thead>
 													<th>Teacher ID</th>
 													<th>Name</th>
+													<th>Email</th>
+													<th>Birthday</th>
+													<th>Joining Date</th>
+													<th>Left Date</th>
+													<th>Contact</th>
 												</thead>
 												</tbody>
 													<?php
 														$i=1;
 														foreach($teachers as $t){
 															echo "<tr>";
-																echo "<td>".$t["userid"]."</td>";
-																echo "<td>".$t["name"]."</td>";
-																echo '<td><a href="18-37646-1_teacher_info_update1.php?id='.$t["id"].'"class="btn btn-success">Edit</a></td>';
+															echo "<td>".$t["userid"]."</td>";
+															echo "<td>".$t["name"]."</td>";
+															echo "<td>".$t["email"]."</td>";
+															echo "<td>".$t["birthday"]."</td>";
+															echo "<td>".$t["joiningdate"]."</td>";
+															echo "<td>".$t["leftdate"]."</td>";
+															echo "<td>".$t["contactnumber"]."</td>";
+															echo '<td><a href="18-37646-1_teacher_info_update1.php?id='.$t["id"].'"class="btn btn-success">Update</a></td>';
 															echo "</tr>";
 															$i++;
 														}

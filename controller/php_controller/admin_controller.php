@@ -81,11 +81,11 @@
 
     $error = false;
 
-    $day = array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31);
-	$month = array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
-	$year1 = array(1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021);
-    $nationality = array("America","Bangladesh","India","Pakisthan","Uganda");
-    $religion = array("Muslim","Hindu","Buddhist","Chrustian","other");
+    $aday = array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31);
+	$amonth = array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
+	$ayear = array(1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021);
+    $anationality = array("America","Bangladesh","India","Pakisthan","Uganda");
+    $areligion = array("Muslim","Hindu","Buddhist","Chrustian","other");
     $bloodgroup = array("AB+","AB-","A+","A-","B+","B-","O+","O-");
 
     if(isset($_POST["admininsert"])){
@@ -443,7 +443,7 @@
         return execute($query);
     }
 
-    if(isset($_POST["clear"])){
+    if(isset($_POST["admininsertclear"])){
         header("Location: admin_info_insert_form.php");
     }
 
@@ -1335,23 +1335,211 @@
     }
 
 
+    //.........................................................SEMESTER_INSERT/UPDATE/DELETE..............................................
 
-    //......................................................COURSE INSERT/UPDATE/DELETE....................................................
+
+    $semester = "";
+    $error_semester = "";
+    $semester_year = "";
+    $error_semester_year = "";
+    $semester_status = "";
+    $error_semester_status = "";
+    $year_semester = "";
+
+    $arr_semester = array("Spring","Summer","Fall");
+    $arr_semester_status = array("Closed","Running","Upcoming");
+
+    if(isset($_POST["semesterinsert"])){
+        if(empty($_POST["semester_year"])){
+            $error = true;
+            $error_semester_year = "Must Be Need Year";
+        }
+        else{
+            $semester_year = $_POST["semester_year"];
+        }
+        if(empty($_POST["semester"])){
+            $error = true;
+            $error_semester = "Must Be Need Semester";
+        }
+        else{
+            $semester = $_POST["semester"];
+        }
+        if(empty($_POST["semester_status"])){
+            $error = true;
+            $error_semester_status = "Must Be Need Semester Status";
+        }
+        else{
+            $semester_status = $_POST["semester_status"];
+        }
+        if(!$error){
+            $year_semester = $semester_year.", ".$semester;
+            $data = insertsemester($year_semester, $semester_status);
+            if($data === true){
+                $error_massage2 = "Successfully Insert Semester ".$year_semester;
+                $semester = "";
+                $semester_year = "";
+                $semester_status = "";
+            }
+            else{
+                $error_massage1 = "Semester ".$year_semester." Already Exists.";
+            }
+
+        }
+    }
+    function insertsemester($year_semester, $semester_status){
+        $query = "insert into semester values(Null,'$year_semester','$semester_status')";
+        return execute($query);
+    }
+
+    if(isset($_POST["enterforsemesterupdate"])){
+        if(empty($_POST["semester_year"])){
+            $error = true;
+            $error_semester_year = "Must Be Need Year";
+        }
+        else{
+            $semester_year = $_POST["semester_year"];
+        }
+        if(empty($_POST["semester"])){
+            $error = true;
+            $error_semester = "Must Be Need Semester";
+        }
+        else{
+            $semester = $_POST["semester"];
+        }
+        if(!$error){
+            $year_semester = $semester_year.", ".$semester;
+            if($data = authenticatesemester($year_semester)){
+                $_SESSION["dataforupdatesemester"] = $year_semester;
+                header("Location: semester_update.php");
+            }
+            else{
+                $error_massage1 = "Not Match.";
+            }
+        }
+    }
+
+    function authenticatesemester($year_semester){
+        $query = "select * from semester where year_semester = '$year_semester'";
+        $data = get($query);
+        return $data;
+    }
+    if(isset($_SESSION["dataforupdatesemester"])){
+        $dataforupdatesemester =$_SESSION["dataforupdatesemester"];
+    }
+
+    function dataforupdatesemester($dataforupdatesemester){
+        global $semester_year;
+        global $semester;
+        global $semester_status;
+
+        $query = "select * from semester where year_semester = '$dataforupdatesemester'";
+        $data = get($query);
+
+        $semester_year = substr($data[0]["year_semester"],0,4);
+        $semester = substr($data[0]["year_semester"],6);
+        $semester_status = $data[0]["semester_status"];
+
+    }
+
+    if(isset($_POST["semesterupdate"])){
+        $semester_status = $_POST["semester_status"];
+        $data = updatesemester($dataforupdatesemester);
+        if($data === true){
+            $error_massage2 = "Successfully updated Semester ".$dataforupdatesemester.".";
+        }
+    }
+
+    function updatesemester($dataforupdatesemester){
+        global $semester_status;
+        $query = "update semester set semester_status = '$semester_status' where year_semester = '$dataforupdatesemester'";
+        return execute($query);
+    }
+
+    if(isset($_POST["enterforsemesterdelete"])){
+        if(empty($_POST["semester_year"])){
+            $error = true;
+            $error_semester_year = "Must Be Need Year";
+        }
+        else{
+            $semester_year = $_POST["semester_year"];
+        }
+        if(empty($_POST["semester"])){
+            $error = true;
+            $error_semester = "Must Be Need Semester";
+        }
+        else{
+            $semester = $_POST["semester"];
+        }
+        if(!$error){
+            $year_semester = $semester_year.", ".$semester;
+            if($data = authenticatesemester($year_semester)){
+                $_SESSION["datafordeletesemester"] = $year_semester;
+                header("Location: semester_delete.php");
+            }
+            else{
+                $error_massage1 = "Not Match.";
+            }
+        }
+    }
+
+    if(isset($_SESSION["datafordeletesemester"])){
+        $datafordeletesemester =$_SESSION["datafordeletesemester"];
+    }
+
+    function datafordeletesemester($datafordeletesemester){
+        global $semester_year;
+        global $semester;
+        global $semester_status;
+
+        $query = "select * from semester where year_semester = '$datafordeletesemester'";
+        $data = get($query);
+
+        $semester_year = substr($data[0]["year_semester"],0,4);
+        $semester = substr($data[0]["year_semester"],6);
+        $semester_status = $data[0]["semester_status"];
+    }
+
+    if(isset($_POST["semesterdelete"])){
+        $data = deletesemester($datafordeletesemester);
+        if($data === true){
+            header("Location: semester_delete_entry.php");
+            setcookie("datafordeletesemester","true",time()+1,"/");
+        }
+    }
+
+    if(isset($_COOKIE["datafordeletesemester"])){
+        $error_massage2 = "Successfully Delete Semester ".$datafordeletesemester.".";
+    }
+
+    function deletesemester($datafordeletesemester){
+        $query = "delete from semester where year_semester = '$datafordeletesemester'";
+        return execute($query);
+    }
+
+    //......................................................COURSE_INSERT/UPDATE/DELETE....................................................
 
     $courseid = "";
     $error_courseid = "";
     $coursename = "";
     $error_coursename = "";
+    $schedule = "";
+    $error_schedule = "";
+    $capacity = "";
+    $error_capacity = "";
     $class = "";
     $error_class = "";
     $section = "";
     $error_section = "";
-    $year = "";
-    $error_year = "";
+    $course_status = "";
+    $error_course_status = "";
     $teacherid = "";
     $error_teacherid = "";
+    $semester_course_code = "";
 
     $error = false;
+
+    $arr_schedule = array("Sun 08.00AM - 11.00AM","Sun 11.00AM - 02.00PM","Sun 02.00PM - 05.00PM","Mon 08.00AM - 11.00AM","Mon 11.00AM - 02.00PM","Mon 02.00PM - 05.00PM","Tue 08.00AM - 11.00AM","Tue 11.00AM - 02.00PM","Tue 02.00PM - 05.00PM","Wed 08.00AM - 11.00AM","Wed 11.00AM - 02.00PM","Wed 02.00PM - 05.00PM");
+    $arr_course_status = array("registration","ongoing","completed");
 
     if(isset($_POST["courseinsert"])){
         if(empty($_POST["courseid"])){
@@ -1428,7 +1616,7 @@
         if(!$error){
             $data = courseinsert($courseid,$coursename);
             if($data === true){
-                $error_massage2 = "Successfully added Admin ID ".$courseid;
+                $error_massage2 = "Successfully added Course ID ".$courseid;
                 $courseid = "";
                 $coursename = "";
             }
@@ -1441,6 +1629,10 @@
     function courseinsert($courseid,$coursename){
         $query = "insert into course values(Null,'$courseid','$coursename')";
         return execute($query);
+    }
+
+    if(isset($_POST["courseinsertclear"])){
+        header("Location: course_insert_form.php");
     }
 
     if(isset($_POST["enterforcourseupdate"])){
@@ -1490,7 +1682,7 @@
 		}
         if(!$error){
             if($cu = authenticateforcourseidforUD($courseid)){
-                setcookie("courseidforUD",$cu["id"],time()+1200,"/");
+                setcookie("courseidforUD",$cu["c_id"],time()+1200,"/");
                 header("Location: course_update_form.php");
             }
             else{
@@ -1519,7 +1711,7 @@
     }
 
     function getcourseupdate($courseidforUD){
-        $query =  "select * from course where id = $courseidforUD";
+        $query =  "select * from course where c_id = $courseidforUD";
         $data = get($query); 
         if(count($data) > 0){
             global $courseid;
@@ -1622,7 +1814,7 @@
 
     function courseupdate($courseid,$coursename){
         global $courseidforUD;
-        $query = "update course set courseid='$courseid', coursename='$coursename' where id= $courseidforUD";
+        $query = "update course set courseid='$courseid', coursename='$coursename' where c_id= $courseidforUD";
         return execute($query);
     }
 
@@ -1677,7 +1869,7 @@
 		}
         if(!$error){
             if($cu = authenticateforcourseidforUD($courseid)){
-                setcookie("courseidforUD",$cu["id"],time()+1200,"/");
+                setcookie("courseidforUD",$cu["c_id"],time()+1200,"/");
                 header("Location: course_delete_form.php");
             }
             else{
@@ -1697,7 +1889,7 @@
 
     function coursedelete(){
         global $courseidforUD;
-        $query = "delete from course where id= $courseidforUD";
+        $query = "delete from course where c_id= $courseidforUD";
         return execute($query);
     }
 
@@ -1713,6 +1905,421 @@
         header("Location: course_delete_entry_form.php");
     }
 
+    if(isset($_POST["courseopen"])){
+        if(empty($_POST["courseid"])){
+			$error = true;
+            $error_courseid = "Must Be Need Course ID";
+		}
+        else{
+            $courseid = $_POST["courseid"];
+        }	
+        if(empty($_POST["class"])){
+            $error = true;
+            $error_class = "Must Be need Class";
+        }
+        else{
+            $class = $_POST["class"];
+        }
+        if(empty($_POST["section"])){
+            $error = true;
+            $error_section = "Must Be need Section";
+        }
+        else{
+            $section = $_POST["section"];
+        }
+        if(empty($_POST["schedule"])){
+            $error = true;
+            $error_schedule = "Must Be Need Schedule";
+        }
+        else{
+            $schedule = $_POST["schedule"];
+        }
+        if(empty($_POST["capacity"])){
+            $error = true;
+            $error_capacity = "Must Be Need Capacity";
+        }
+        else{
+            $capacity = $_POST["capacity"];
+        }
+        if(empty($_POST["course_status"])){
+            $error = true;
+            $error_course_status = "Must Be Need Course Status";
+        }
+        else{
+            $course_status = $_POST["course_status"];
+        }
+        if(empty($_POST["semester"])){
+            $error = true;
+            $error_semester = "Must Be Need Semester";
+        }
+        else{
+            $semester = $_POST["semester"];
+        }
+        if(!empty($_POST["teacherid"])){
+            $teacherid = $_POST["teacherid"];
+        }
+        if(!$error){
+            $data = opencourse(substr("$courseid",0,7),$class,$section,$schedule,$capacity,$semester,substr("$teacherid",0,7),$course_status);
+            if($data === true){
+                $error_massage2 = "Successfully Open Course ID ".substr("$courseid",0,7);
+                $courseid = "";
+                $error_courseid = "";
+                $semester = "";
+                $error_semester = "";
+                $schedule = "";
+                $error_schedule = "";
+                $capacity = "";
+                $error_capacity = "";
+                $class = "";
+                $error_class = "";
+                $section = "";
+                $error_section = "";
+                $teacherid = "";
+                $course_status = "";
+                $error_course_status= "";
+            }
+            else{
+                $error_massage1 = "Course ID ".$courseid." already exists in class ".$class." section ".$section;
+            }
+
+        }
+    }
+    function opencourse($courseid,$class,$section,$schedule,$capacity,$semester,$teacherid,$course_status){
+        $query = "select * from course_semester where courseid = '$courseid' and classdecrip = '$class' and section = '$section' and semester = '$semester'";
+        $data = get($query);
+        if(count($data) > 0){
+            return false;
+        }
+        else{
+            $query = "insert into course_semester values(Null,'$courseid','$class','$section','$schedule','$capacity','$semester','$teacherid','$course_status')";
+            return execute($query);
+        }
+    }
+
+    function allcourseid(){
+        $query = "select * from course order by courseid asc";
+        $data = get($query);
+        if(count($data) > 0){
+            $c = $data;
+            $ca = array();
+            foreach ($c as $n => $n_value) {
+                $ca[] = $n_value["courseid"].", ".$n_value["coursename"];
+            }
+            return $ca;
+        }
+        else{
+            return false;
+        }
+    }
+
+    function allteacherid(){
+        $query = "select * from teacher order by userid asc";
+        $data = get($query);
+        if(count($data) > 0){
+            $t = $data;
+            $ta = array();
+            foreach ($t as $n => $n_value) {
+                $ta[] = $n_value["userid"].", ".$n_value["name"];
+            }
+            return $ta;
+        }
+        else{
+            return false;
+        }
+    }
+
+    function semesteryear(){
+        $query = "select year_semester from semester order by year_semester desc";
+        $data = get($query);
+        if(count($data) > 0){
+            $s = $data;
+            $sy = array();
+            foreach ($s as $n => $n_value) {
+                $sy[] = $n_value["year_semester"];
+            }
+            return $sy;
+        }
+        else{
+            return false;
+        }
+    }
+
+    if(isset($_POST["courseopenclear"])){
+        header("Location: course_open_form.php");
+    }
+
+    function allsemestercourseid(){
+        $query = "select * from course_semester order by id desc";
+        $data = get($query);
+        if(count($data) > 0){
+            $c = $data;
+            $ca = array();
+            foreach ($c as $n => $n_value) {
+                $ca[] = $n_value["id"].", ".$n_value["courseid"];
+            }
+            return $ca;
+        }
+        else{
+            return false;
+        }
+    }
+
+    if(isset($_POST["enterforcourseopenupdate"])){
+        if(empty($_POST["courseid"])){
+			$error = true;
+            $error_courseid = "Must Need Course ID";
+		}
+		else{
+			$courseid = $_POST["courseid"];
+		}	
+        if(!$error){
+            if($co = authenticateforcourseidforopenUD(substr($courseid,0,-9))){
+                setcookie("courseidopenforUD",$co["id"],time()+1200,"/");
+                header("Location: course_open_update_form.php");
+            }
+            else{
+                $error_courseid = "invalid Course ID.";
+            }
+
+        }
+    }
+
+    function authenticateforcourseidforopenUD($courseid){
+        $query = "select * from course_semester where id = '$courseid'";
+        $data = get($query);
+        if(count($data) > 0){
+            return $data[0];
+        }
+        else{
+            return false;
+        }
+    }
+    $courseidopenforUD = "";
+    if(!isset($_COOKIE["courseidopenforUD"])){
+        $courseidopenforUD = "";
+    }
+    else{
+        $courseidopenforUD = $_COOKIE["courseidopenforUD"];
+    }
+
+
+    $teacherid1 = "";
+    function getcourseopenupdate($courseidforopenUD){
+        $query =  "select * from course_semester inner join course on course_semester.courseid = course.courseid where course_semester.id = $courseidforopenUD";
+        $data = get($query); 
+        if(count($data) > 0){
+            global $courseid;
+            global $coursename;
+            global $class;
+            global $section;
+            global $schedule;
+            global $capacity;
+            global $semester;
+            global $teacherid;
+            global $teacherid1;
+            global $course_status;
+            global $semester_course_code;
+
+            $courseid = $data[0]["courseid"].", ".$data[0]["coursename"];
+            $section = $data[0]["section"];
+            $class = $data[0]["classdecrip"];
+            $schedule = $data[0]["schedule"];
+            $capacity = $data[0]["capacity"];
+            $semester = $data[0]["semester"];
+            $teacherid1 = $data[0]["teacherid"];
+            $course_status = $data[0]["course_status"];
+            $semester_course_code = $data[0]["id"];
+
+            if(!empty($teacherid1)){
+                $query = "select * from teacher where userid= '$teacherid1'";
+                $data1 = get($query);
+                $teacherid = $data[0]["teacherid"].", ".$data1[0]["name"];
+            }
+        }
+        else{
+            return false;
+        }
+    }
+    
+    if(isset($_POST["courseopenupdate"])){
+        $schedule = $_POST["schedule"];
+        $capacity = $_POST["capacity"];
+        $semester = $_POST["semester"];
+        $course_status = $_POST["course_status"];
+        if(!empty($_POST["teacherid"])){
+            $teacherid = $_POST["teacherid"];
+            $data = courseopenupdate($schedule,$capacity,$course_status,$semester,substr("$teacherid",0,7));
+        }
+        else{
+            $data = courseopenupdate1($schedule,$capacity,$course_status,$semester);
+        }
+        if($data === true){
+            $error_massage2 = "Successfully updated Course Details.";
+        }
+    }
+
+    function courseopenupdate($schedule,$capacity,$course_status,$semester,$teacherid){
+        global $courseidopenforUD;
+        $query = "update course_semester set schedule='$schedule', capacity='$capacity', semester='$semester', teacherid='$teacherid' where id=$courseidopenforUD";
+        return execute($query);
+    }
+
+    function courseopenupdate1($schedule,$capacity,$course_status,$semester){
+        global $courseidopenforUD;
+        $query = "update course_semester set schedule='$schedule', capacity='$capacity', course_status='$course_status', semester='$semester' where id=$courseidopenforUD";
+        return execute($query);
+    }
+
+    if(isset($_POST["courseopenupdateback"])){
+        header("Location: course_open_update_entry_form.php");
+    }
+
+    if(isset($_POST["enterforcoursecencle"])){
+        if(empty($_POST["courseid"])){
+			$error = true;
+            $error_courseid = "Must Need Course ID";
+		}
+		else{
+			$courseid = $_POST["courseid"];
+		}	
+        if(!$error){
+            if($co = authenticateforcourseidforopenUD($courseid)){
+                setcookie("courseidopenforUD",$co["id"],time()+1200,"/");
+                header("Location: course_cencle_form.php");
+            }
+            else{
+                $error_courseid = "invalid Course ID.";
+            }
+
+        }
+    }
+
+    if(isset($_POST["coursecencle"])){
+        $data = coursecencle();
+        if($data === true){
+            setcookie("successfullycoursecencle","true",time()+1,"/");
+            header("Location: course_cencle_entry_form.php"); 
+        }
+    }
+
+    function coursecencle(){
+        global $courseidopenforUD;
+        $query = "delete from course_semester where id= $courseidopenforUD";
+        return execute($query);
+    }
+
+    if(isset($_POST["coursecencleback"])){
+        header("Location: course_cencle_entry_form.php");
+    }
+
+    if(isset($_POST["allcourse"])){
+        header("Location: allcourse.php");
+    }
+
+    if(isset($_POST["enterforcoursedetails"])){
+        if(empty($_POST["courseid"])){
+			$error = true;
+            $error_courseid = "Must Need Course ID";
+		}
+		else if(strlen($_POST["courseid"]) != 7){
+			$error = true;
+			$error_courseid = "Course ID must be 7 character.";
+		}
+		else{
+			$hypen = 0;
+			$number = 0;
+			$bug =0;
+			$arr_courseid = str_split($_POST["courseid"]);
+            if(strlen($_POST["courseid"]) == 7){
+                if($arr_courseid[2] == "-"){
+                    foreach($arr_courseid as $aa){
+                        if($aa == "-"){
+                            $hypen++;
+                        }
+                        else if($aa >= 0){
+                            $number++;
+                        }
+                        else{
+                            $bug++;
+                        }
+                    }
+                }
+                else{
+                    $error = true;
+                    $error_courseid = "Course Id like as (**-4***)";
+                }
+                if($arr_courseid[3] != "4"){
+                    $error = true;
+                    $error_courseid = "Course Id like as (**-4***)";
+                }
+            }
+			if($hypen > 1 || $bug > 0){
+				$error = true;
+				$error_courseid = "Course Id like as (**-4***)";
+			}
+			else{
+				$courseid = $_POST["courseid"];
+			}	
+		}
+        if(!$error){
+            if($cu = authenticateforcourseidforUD($courseid)){
+                setcookie("courseidforUD",$cu["c_id"],time()+1200,"/");
+                header("Location: course_details1_form.php");
+            }
+            else{
+                $error_courseid = "invalid Course ID.";
+            }
+
+        }
+    }
+
+    if(isset($_POST["coursereport"])){
+        header("Location: coursereport.php");
+    }
+
+    if(isset($_POST["enterforcoursereport"])){
+        if(empty($_POST["courseid"])){
+			$error = true;
+            $error_courseid = "Must Need Course ID";
+		}
+		else{
+			$courseid = $_POST["courseid"];
+		}	
+        if(!$error){
+            if($co = authenticateforcourseidforopenUD($courseid)){
+                setcookie("courseidopenforUD",$co["id"],time()+1200,"/");
+                header("Location: coursereport1.php");
+            }
+            else{
+                $error_courseid = "invalid Course ID.";
+            }
+
+        }
+    }
+
+    function allstudentbysemestercourse($courseidopenforUD){
+        $query = "select * from studentenrollment where course_semester_id = $courseidopenforUD";
+        $data = get($query); 
+        if(count($data) > 0){
+            $c = $data;
+            $ca = array();
+            foreach ($c as $n => $n_value) {
+                $na = $n_value["studentid"];
+                $query = "select * from student where userid = '$na'";
+                $data1 = get($query);
+                if(count($data1) > 0){
+                    $ca[] = $n_value["studentid"].", ".$data1[0]["name"].", ".$n_value["result"];
+                }
+            }
+            return $ca;
+        }
+        else{
+            return false;
+        }
+    }
+    if(isset($_POST["coursecencleback"])){
+        header("Location: coursereport.php");    
+    }
 
     //..................................................................Log_Out.........................................................
 
@@ -1727,9 +2334,20 @@
     //...........................................................18-37646-1(admin_controller).........................................................................
 
 
-    include '18-37646-1_admin_controller.php'
+    include '18-37646-1_admin_controller.php';
 
 
-    //................................................................................................................................................................
+    //...........................................................17-35574-3(admin_controller).........................................................................
+
+
+    include '17-35574-3_adminController.php';
+
+
+    //...........................................................16-31722-1(admin_controller).....................................................................................................
     
+
+    include '16-31722-1_admin_controller.php';
+    
+
+    //................................................................................................................................................
 ?>

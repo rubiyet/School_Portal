@@ -43,10 +43,10 @@
 	
 	$error = false;
 	
-	$year=array(2001,2002,2003,2004,2005,2006,2007,2008,2009,2010);
+	$year1=array(2001,2002,2003,2004,2005,2006,2007,2008,2009,2010);
 	$month=array("January","February","March","April","May","June","July","August","September","Octobeer","November","December");
 	$day= array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31);
-	$blood=array("AB+","AB-","O+","O-","A+","A-","B+","B-");
+	$blood1=array("AB+","AB-","O+","O-","A+","A-","B+","B-");
 	
 	function qualificationExist($qualification){
 		global $qualifications;
@@ -400,13 +400,13 @@
 		$present_address=$_POST["presentaddress"];
 		$parmanent_address=$_POST["parmanentaddress"];
 		$contact_number=$_POST["contactnumber"];
-        if(editteacher($teacherid, $name, $salary, $email, $gender, $birthday, $nationality, $religion, $blood_group, $father_name, $mother_name, $joining_day, $left_day, $qualification, $present_address, $parmanent_address, $contact_number)){
+        if(editteacher($teacherid, $name, $salary, $email, $gender, $birthday, $nationality, $religion, $blood_group, $father_name, $mother_name, $joining_day, $left_day, $qualifications, $present_address, $parmanent_address, $contact_number)){
             header("Location: 18-37646-1_teacher_info_update.php");
         }
     }
-    function editteacher($teacherid, $name, $salary, $email, $gender, $birthday, $nationality, $religion, $blood_group, $father_name, $mother_name, $joining_day, $left_day, $qualification, $present_address, $parmanent_address, $contact_number){
+    function editteacher($teacherid, $name, $salary, $email, $gender, $birthday, $nationality, $religion, $blood_group, $father_name, $mother_name, $joining_day, $left_day, $qualifications, $present_address, $parmanent_address, $contact_number){
         global $id;
-        $query = "update teacher set userid='$teacherid', name='$name', salary='$salary', email='$email', gender='$gender', birthday='$birthday', nationality='$nationality', religion='$religion', bloodgroup='$blood_group', fathername='$father_name', mothername='$mother_name', joiningdate='$joining_day', leftdate='$left_day', qualification='$qualification', presentaddress='$present_address', parmanentaddress='$parmanent_address', contactnumber='$contact_number' where id =$id";
+        $query = "update teacher set userid='$teacherid', name='$name', salary='$salary', email='$email', gender='$gender', birthday='$birthday', nationality='$nationality', religion='$religion', bloodgroup='$blood_group', fathername='$father_name', mothername='$mother_name', joiningdate='$joining_day', leftdate='$left_day', qualification='$qualifications', presentaddress='$present_address', parmanentaddress='$parmanent_address', contactnumber='$contact_number' where id =$id";
         return execute($query);
     }
 	if(isset($_POST["btn_deleteteacher"])){
@@ -417,6 +417,156 @@
 	function deleteteacher(){
 		global $id;
 		$query = "delete from teacher where id = $id";
+		return execute($query);
+	}
+	//user account
+	$userid = "";
+	$error_userid = "";
+	$type = "";
+	$error_type = "";
+	$password = "";
+	$error_password = "";
+	$success_connect = "";
+	$success_connect1 ="";
+	$status = "";
+
+	$error = false;
+	
+	$array_type= array("Admin","Teacher","Student");
+	$array_status = array("Active","Inactive");
+
+	function generateRandomString($length = 6) {
+		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$charactersLength = strlen($characters);
+		$randomString = array("#","@");
+		$randomString1 = "";
+		for ($i = 0; $i < $length; $i++) {
+			array_push($randomString,$characters[rand(0, $charactersLength - 1)]);
+		}
+		shuffle($randomString);
+		foreach($randomString as $rs){
+			$randomString1 .= $rs;
+		}
+		return $randomString1;
+	}
+	
+	if(isset($_POST["submit"])){
+		if(empty($_POST["userid"])){
+			$error = true;
+			$error_userid = "User Id required.";
+		}
+		else if(strlen($_POST["userid"]) != 7){
+			$error = true;
+			$error_userid = "User Id must be 7 character.";
+		}
+		else{
+			$hypen = 0;
+			$number = 0;
+			$bug =0;
+			$array_userid = str_split($_POST["userid"]);
+			if(strlen($_POST["userid"]) == 7){
+				if($array_userid[2] == "-"){
+					foreach($array_userid as $au){
+						if($au == "-"){
+							$hypen++;
+						}
+						else if($au >= 0){
+							$number++;
+						}
+						else{
+							$bug++;
+						}
+					}
+				}
+				else{
+					$error = true;
+					$error_userid = "User Id like as (00-0000)";
+				}
+			}
+			if($hypen > 1 || $bug > 0){
+				$error = true;
+				$error_userid = "User Id like as (00-0000)";
+			}
+			else{
+				$userid = $_POST["userid"];
+			}	
+		}
+		if(!isset($_POST["type"])){
+			$error = true;
+			$error_type = "Type required.";
+		}
+		else{
+			$type = $_POST["type"];
+		}
+		if(isset($_POST["status"])){
+			$status = $_POST["status"];
+		}
+		if(isset($_POST["type"])){
+			if(strlen($_POST["userid"]) == 7){
+				if($type == "Admin"){
+					$array_userid = str_split($_POST["userid"]);
+					if($array_userid[3] != 1){
+						$error = true;
+						$error_userid = " Admin User Id like as (**-1***) with 7 character";
+					}
+				}
+				else if($type == "Teacher"){
+					$array_userid = str_split($_POST["userid"]);
+					if($array_userid[3] != 2){
+						$error = true;
+						$error_userid = " Teacher User Id like as (**-2***) with 7 character";
+					}
+				}
+				else if($type == "Student"){
+					$array_userid = str_split($_POST["userid"]);
+					if($array_userid[3] != 3){
+						$error = true;
+						$error_userid = " Student User Id like as (**-3***) with 7 character";
+					}
+				}
+			}
+		}
+		if(!$error){
+			$password = generateRandomString();
+			$data = insertuser($userid,$password,$type,$status);
+			$query = "insert into users values(Null,'$userid','$password','$type','$status')";
+		}
+	}
+	function insertuser($userid,$password,$type,$status){
+		$query = "insert into users values(Null,'$userid','$password','$type','$status')";
+		return execute($query);
+	}
+	function getAllUsers(){
+        $query = "select * from users";
+        $rs = get($query);
+        return $rs;
+    }
+	function getUser($id){
+        $query = "select * from users where id = $id";
+        $rs = get($query);
+        return $rs[0];
+    }
+	if(isset($_POST["btn_edituser"])){
+		$userid=$_POST["uname"];
+		$type=$_POST["type"];
+		$status=$_POST["status"];
+        if(edituser($userid, $type, $status)){
+            header("Location: 18-37646-1_user_acc_update.php");
+        }
+    }
+    function edituser($userid, $type, $status){
+        global $id;
+        $query = "update users set uname='$userid', type='$type', status='$status' where id =$id";
+        return execute($query);
+    }
+	if(isset($_POST["btn_deleteuser"])){
+		if(deleteuser()){
+			header("Location: 18-37646-1_user_acc_delete.php");
+		}
+	}
+	function deleteuser(){
+		global $id;
+		$query = "delete from users where id = $id";
 		return execute($query);
 	}
 

@@ -61,7 +61,7 @@
                                                     <tr>
                                                         <td align="right" id="subtitle">Birth Date<span id="star">* </span>: </td>
                                                         <td>
-                                                            <select id="inputbdday" name="inputbdday"><option disabled selected>Day</option><?php foreach($day as $d){if($d == $inputbdday) echo "<option selected>$d</option>"; else echo "<option>$d</option>";}?></select> <select id="inputbdmonth" name="inputbdmonth"><option disabled selected>Month</option><?php foreach($month as $m){if($m == $inputbdmonth) echo "<option selected>$m</option>"; else  echo "<option>$m</option>";}?></select> <select id="inputbdyear" name="inputbdyear"><option disabled selected>Year</option><?php foreach($year1 as $y){if($y == $inputbdyear) echo "<option selected>$y</option>"; else  echo "<option>$y</option>";}?></select>
+                                                            <select id="inputbdday" name="inputbdday"><option disabled selected>Day</option><?php foreach($aday as $d){if($d == $inputbdday) echo "<option selected>$d</option>"; else echo "<option>$d</option>";}?></select> <select id="inputbdmonth" name="inputbdmonth"><option disabled selected>Month</option><?php foreach($amonth as $m){if($m == $inputbdmonth) echo "<option selected>$m</option>"; else  echo "<option>$m</option>";}?></select> <select id="inputbdyear" name="inputbdyear"><option disabled selected>Year</option><?php foreach($ayear as $y){if($y == $inputbdyear) echo "<option selected>$y</option>"; else  echo "<option>$y</option>";}?></select>
                                                         </td>
                                                         <td><span id="error_inputbddaymonthyear"><?php echo $error_inputbddaymonthyear?></span></td>
                                                     <tr>
@@ -72,13 +72,13 @@
                                                     </tr>
                                                     <tr>
                                                         <td align="right" id="subtitle">Nationality<span id="star">* </span>: </td>
-                                                        <td><select id="inputnationality" name="inputnationality"><option disabled selected>Select</option><?php foreach($nationality as $n){if($n == $inputnationality) echo "<option selected>$n</option>"; else echo "<option>$n</option>";}?></select></td>
+                                                        <td><select id="inputnationality" name="inputnationality"><option disabled selected>Select</option><?php foreach($anationality as $n){if($n == $inputnationality) echo "<option selected>$n</option>"; else echo "<option>$n</option>";}?></select></td>
                                                         <td><span id="error_nationality"><?php echo $error_nationality?></span></td>
                                                     </tr>
                                                     <tr>
                                                         <td align="right" id="subtitle">Religion<span id="star">* </span>: </td>
                                                         <td>
-                                                            <select id="inputreligion" name="inputreligion"><option disabled selected>Select</option><?php foreach($religion as $r){if($r == $inputreligion) echo "<option selected>$r</option>"; else echo "<option>$r</option>";}?></select>
+                                                            <select id="inputreligion" name="inputreligion"><option disabled selected>Select</option><?php foreach($areligion as $r){if($r == $inputreligion) echo "<option selected>$r</option>"; else echo "<option>$r</option>";}?></select>
                                                         </td>
                                                         <td><span id="error_religion"><?php echo $error_religion?></span></td>
                                                     </tr>
@@ -114,7 +114,7 @@
                                                         Joining Date<span id="star">* </span>:
                                                         </td>
                                                         <td>
-                                                            <select id="inputjday" name="inputjday"><option disabled selected>Day</option><?php foreach($day as $d){if($d == $inputjday) echo "<option selected>$d</option>"; else echo "<option>$d</option>";}?></select> <select id="inputjmonth" name="inputjmonth"><option disabled selected>Month</option><?php foreach($month as $m){if($m == $inputjmonth) echo "<option selected>$m</option>"; else  echo "<option>$m</option>";}?></select> <select id="inputjyear" name="inputjyear"><option disabled selected>Year</option><?php foreach($year1 as $y){if($y == $inputjyear) echo "<option selected>$y</option>"; else  echo "<option>$y</option>";}?></select>
+                                                            <select id="inputjday" name="inputjday"><option disabled selected>Day</option><?php foreach($aday as $d){if($d == $inputjday) echo "<option selected>$d</option>"; else echo "<option>$d</option>";}?></select> <select id="inputjmonth" name="inputjmonth"><option disabled selected>Month</option><?php foreach($amonth as $m){if($m == $inputjmonth) echo "<option selected>$m</option>"; else  echo "<option>$m</option>";}?></select> <select id="inputjyear" name="inputjyear"><option disabled selected>Year</option><?php foreach($ayear as $y){if($y == $inputjyear) echo "<option selected>$y</option>"; else  echo "<option>$y</option>";}?></select>
                                                         </td>   
                                                         <td><span id="error_inputjdaymonthyear"><?php echo $error_inputjdaymonthyear?></span></td>
                                                     <tr>
@@ -123,7 +123,7 @@
                                                         Left Date<span id="star">* </span>:
                                                         </td>
                                                         <td>
-                                                            <select id="inputlday" name="inputlday"><option disabled selected>Day</option><?php foreach($day as $d){if($d == $inputlday) echo "<option selected>$d</option>"; else echo "<option>$d</option>";}?></select> <select id="inputlmonth" name="inputlmonth"><option disabled selected>Month</option><?php foreach($month as $m){if($m == $inputlmonth) echo "<option selected>$m</option>"; else  echo "<option>$m</option>";}?></select> <select id="inputlyear" name="inputlyear"><option disabled selected>Year</option><?php foreach($year1 as $y){if($y == $inputlyear) echo "<option selected>$y</option>"; else  echo "<option>$y</option>";}?></select>
+                                                            <select id="inputlday" name="inputlday"><option disabled selected>Day</option><?php foreach($aday as $d){if($d == $inputlday) echo "<option selected>$d</option>"; else echo "<option>$d</option>";}?></select> <select id="inputlmonth" name="inputlmonth"><option disabled selected>Month</option><?php foreach($amonth as $m){if($m == $inputlmonth) echo "<option selected>$m</option>"; else  echo "<option>$m</option>";}?></select> <select id="inputlyear" name="inputlyear"><option disabled selected>Year</option><?php foreach($ayear as $y){if($y == $inputlyear) echo "<option selected>$y</option>"; else  echo "<option>$y</option>";}?></select>
                                                         </td>   
                                                         <td><span id="error_inputldaymonthyear"><?php echo $error_inputldaymonthyear?></span></td>
                                                     <tr>

@@ -33,11 +33,10 @@
                                                         <td align="right" width="37%" id="subtitle">Course ID<span id="star">* </span>: </td>
                                                         <td width=""><input type="text" name="courseid" value="<?php echo $courseid?>"></td>
                                                         <td width="" id="enterbutton15"><input type="submit" name="enterforcoursedelete" value="Enter" id="button10"></td>
-                                                        <td id="errormassage1" width="43%"><?php echo $error_courseid?></td>
+                                                        <td id="" width="43%"><?php if(!empty($successfullycoursedelete)){echo "<span id='errormassage3'>".$successfullycoursedelete."</span>";} else{echo "<span id='errormassage1'>".$error_courseid."</span>";}?></td>
                                                     </tr>
                                                     <tr>
                                                         <td></td>
-                                                        <td id="errormassage3"><?php if(!empty($successfullycoursedelete)){echo $successfullycoursedelete;}?></td>
                                                     </tr>
                                                 </form>
                                             </table>

@@ -4,7 +4,7 @@ function get(id){
 	return document.getElementById(id);
 }
 function teachervalidatebyjs(){
-	refresh();
+	refresh1();
 	if(get("teacherid").value==""){
 		error=true;
 		get("error_teacherid").innerHTML="*Teacher id required";
@@ -143,16 +143,16 @@ function teachervalidatebyjs(){
         }
     }
 	if(get("input_day").selectedIndex == 0 || get("input_month").selectedIndex == 0 || get("input_year").selectedIndex == 0){
-        error = 1;
+        error = true;
         get("error_input_date_of_birth").innerHTML = "*Birth Day, Month & Year Required";
     }
 
     if(get("nationality").value == ""){
-        error = 1;
+        error = true;
         get("error_nationality").innerHTML = "*Must be need nationality";
     }
     else if(get("nationality").value.length < 3){
-        error = 1;
+        error = true;
         get("error_nationality").innerHTML = "*nationality must be greater then 2 letter";
     }
     else{
@@ -176,17 +176,17 @@ function teachervalidatebyjs(){
             }
         });
         if(number5 >= 1){
-            error = 1;
+            error = true;
             get("error_nationality").innerHTML = "*nationality must be contain only Letter";
         }
     }
 
     if(get("religion").value == ""){
-		error = 1;
+		error = true;
 		get("error_religion").innerHTML = "*Must be need Religion";
 	}
 	else if(get("religion").value.length < 3){
-		error = 1;
+		error = true;
 		get("error_religion").innerHTML = "*Religion must be greater then 2 letter";
 	}
 	else{
@@ -210,23 +210,23 @@ function teachervalidatebyjs(){
 			}
 		});
 		if(number6 >= 1){
-			error = 1;
+			error = true;
 			get("error_religion").innerHTML = "*Religion must be contain only Letter";
 		}
 	}
 
     if(get("blood_group").selectedIndex == 0){
-        error = 1;
+        error = true;
         get("error_blood_group").innerHTML = "*Blood Group Must be Required";
 
     }
 
    if(get("father_name").value == ""){
-		error = 1;
+		error = true;
 		get("error_father_name").innerHTML = "*Must be need Father Name";
 	}
 	else if(get("father_name").value.length < 3){
-		error = 1;
+		error = true;
 		get("error_father_name").innerHTML = "*Father Name must be greater then 2 letter";
 	}
 	else{
@@ -250,17 +250,17 @@ function teachervalidatebyjs(){
 			}
 		});
 		if(number3 >= 1){
-			error = 1;
+			error = true;
 			get("error_father_name").innerHTML = "*Father Name must be contain only Letter";
 		}
 	}
 
 	if(get("mother_name").value == ""){
-		error = 1;
+		error = true;
 		get("error_mother_name").innerHTML = "*Must be need Mother Name";
 	}
 	else if(get("mother_name").value.length < 3){
-		error = 1;
+		error = true;
 		get("error_mother_name").innerHTML = "*Mother Name must be greater then 2 letter";
 	}
 	else{
@@ -284,16 +284,16 @@ function teachervalidatebyjs(){
 			}
 		});
 		if(number4 >= 1){
-			error = 1;
+			error = true;
 			get("error_mother_name").innerHTML = "*Mother Name must be contain only Letter";
 		}
 	}
 	if(get("join_day").selectedIndex == 0 || get("join_month").selectedIndex == 0 || get("join_year").selectedIndex == 0){
-        error = 1;
+        error = true;
         get("error_join_date").innerHTML = "*Join Day, Month & Year Required";
     }
 	if(get("left_day").selectedIndex == 0 || get("left_month").selectedIndex == 0 || get("left_year").selectedIndex == 0){
-        error = 1;
+        error = true;
         get("error_left_date").innerHTML = "*Left Day, Month & Year Required";
     }
 	if(!validatequalifications()){
@@ -330,7 +330,7 @@ function teachervalidatebyjs(){
 
 	return !error;
 }
-function refresh(){
+function refresh1(){
     error = false;
     hypen = 0;
     number = 0;
@@ -355,4 +355,80 @@ function refresh(){
 	get("error_parmanent_address").innerHTML = "";
 	get("error_contact_number").innerHTML = "";
 
+}
+
+function uservalidatebyjs(){
+	refresh2();
+	if(get("userid").value==""){
+		error=true;
+		get("error_userid").innerHTML="*User id required";
+	}
+	else if(get("userid").value.length != 7){
+		error = true;
+		get("error_userid").innerHTML="*User Id must be 7 character";
+	}
+	
+	else{
+        var hypen = 0;
+        var number = 0;
+        var bug = 0;
+        var arr_userid;
+        arr_userid = get("userid").value.split("");
+        if(arr_userid[2] == "-"){
+            arr_userid.forEach(function(au){
+                if(au == "-"){
+                    hypen++;
+                }
+                else if(au >= 0 && au <= 9){
+                    number++;
+                }
+                else{
+                    bug++;
+                }
+            });
+        }
+        else{
+            error = true;
+            get("error_userid").innerHTML = "*User Id like as (00-0000)";
+        }
+        if(hypen > 1 || bug > 0){
+            error = true;
+            get("error_userid").innerHTML = "*User Id like as (00-0000)";
+        }
+    }
+	if(get("type").selectedIndex == 0){
+        error = true;
+        get("error_type").innerHTML = "*Type Required";
+    }
+	if(get("type").selectedIndex != 0){
+		if(get("userid").value.length == 7){
+			if(get("type").value == "Admin"){
+				arr_userid = get("userid").value.split("");
+				if(arr_userid[3] != 1){
+					error = true;
+					get("error_userid").innerHTML="*Admin User Id like as (**-1***) with 7 character";
+				}
+			}
+			if(get("type").value == "Teacher"){
+				arr_userid = get("userid").value.split("");
+				if(arr_userid[3] != 2){
+					error = true;
+					get("error_userid").innerHTML="*Teacher User Id like as (**-2***) with 7 character";
+				}
+			}
+			if(get("type").value == "Student"){
+				arr_userid = get("userid").value.split("");
+				if(arr_userid[3] != 3){
+					error = true;
+					get("error_userid").innerHTML="*Student User Id like as (**-2***) with 7 character";
+				}
+			}
+		}
+    }
+	return !error;
+}
+function refresh2(){
+    error = false;
+	get("error_userid").innerHTML="";
+	get("error_type").innerHTML = "";
 }

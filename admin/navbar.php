@@ -2,7 +2,7 @@
     <head>
         <title>PORTAL | AISB</title>
         <link rel="icon" href="../resources/aisb_logo1.png" type="image/icon">
-        <link rel="stylesheet" href="css/navbar.css">
+        <link rel="stylesheet" href="css/navbar2.css">
         <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +21,7 @@
                             <a href="admin_info_delete_entry_form.php"><button id=button3><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;&nbsp;Delete</button></a>
                         </div>
                     </div>
-                    <div id="fulldropbox1">
+                    <div id="fulldropbox">
                         <button class="dropdownjs1" id="button"><i class="fa fa-chalkboard-teacher fa-lg"></i>&nbsp;&nbsp;Teacher Personal Info<i class="fa fa-caret-down fa-lg icon"></i></button>
                         <div id="dropdowncontainer1"> 
                             <a href="18-37646-1_teacher_info_insert.php"><button id=button2><i class="fas fa-plus-square fa-lg"></i>&nbsp;&nbsp;Insert</button></a>
@@ -29,33 +29,54 @@
                             <a href="18-37646-1_teacher_info_delete.php"><button id=button3><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;&nbsp;Delete</button></a>
                         </div>
                     </div>
-                    <div id="fulldropbox2">
+                    <div id="fulldropbox">
                         <button class="dropdownjs2" id="button">&nbsp;&nbsp;<i class="fa fa-user-graduate fa-lg"></i></i>&nbsp;&nbsp;Student Personal Info<i class="fa fa-caret-down fa-lg icon"></i></button>
-                        <div id="dropdowncontainer2">
-                            <form action="" method="POST">
-                                <button type="submit" name="studentpersonalinfoinsert" id=button2><i class="fas fa-plus-square fa-lg"></i>&nbsp;&nbsp;Insert</button>
-                                <button type="submit" name="studentpersonalinfoinsert" id=button2><i class="fas fa-edit"></i>&nbsp;&nbsp;Update</button>
-                                <button type="submit" name="studentpersonalinfoinsert" id=button3><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;&nbsp;Delete</button>
-                            </form>
+                        <div id="dropdowncontainer2">  
+                            <a href="17-35574-3_student.php"><button id=button2><i class="fas fa-plus-square fa-lg"></i>&nbsp;&nbsp;Insert</button></a>
+                            <a href="17-35574-3_studentuinfo.php"><button id=button2><i class="fas fa-edit"></i>&nbsp;&nbsp;Update</button></a>
+                            <a href="17-35574-3_studentadmitted.php"><button id=button3><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;&nbsp;Delete</button></a>
                         </div>
                     </div>
-                    
-                        <button type="submit" name="useraccountinsert" id="button4">&nbsp;<i class="fa fa-user-circle fa-lg"></i>&nbsp;&nbsp;User Account Insert</button><br>
                     <div id="fulldropbox">
-                        <button class="dropdownjs3" id="button">&nbsp;<i class="fa fa-book fa-lg"></i>&nbsp;&nbsp;Course<i class="fa fa-caret-down fa-lg icon"></i></button>
+                        <button class="dropdownjs4" id="button">&nbsp;<i class="fa fa-user-circle fa-lg"></i>&nbsp;&nbsp;User Account<i class="fa fa-caret-down fa-lg icon"></i></button>
+                        <div id="dropdowncontainer4">
+                            <a href="18-37646-1_user_acc_insert.php"><button id=button2><i class="fas fa-plus-square fa-lg"></i>&nbsp;&nbsp;Insert</button></a>
+                            <a href="18-37646-1_user_acc_update.php"><button id=button2><i class="fas fa-edit"></i>&nbsp;&nbsp;Update</button></a>
+                            <a href="18-37646-1_user_acc_delete.php"><button id=button3><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;&nbsp;Delete</button></a>
+                        </div>
+                    </div>
+                    <div id="fulldropbox">
+                        <button class="dropdownjs6" id="button">&nbsp;&nbsp;<i class="fa fa-building fa-lg"></i>&nbsp;&nbsp;Semester<i class="fa fa-caret-down fa-lg icon"></i></button>
+                        <div id="dropdowncontainer6">
+                            <a href="semester_insert.php"><button id=button2><i class="fas fa-plus-square fa-lg"></i>&nbsp;&nbsp;Insert</button></a>
+                            <a href="semester_update_entry.php"><button id=button2><i class="fas fa-edit"></i>&nbsp;&nbsp;Update</button></a>
+                            <a href="semester_delete_entry.php"><button id=button3><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;&nbsp;Delete</button></a>
+                        </div>
+                    </div>
+                    <div id="fulldropbox">
+                        <button class="dropdownjs3" id="button">&nbsp;&nbsp;<i class="fa fa-book fa-lg"></i>&nbsp;&nbsp;Course<i class="fa fa-caret-down fa-lg icon"></i></button>
                         <div id="dropdowncontainer3">
                             <a href="course_insert_form.php"><button id=button2><i class="fas fa-plus-square fa-lg"></i>&nbsp;&nbsp;Insert</button></a>
                             <a href="course_update_entry_form.php"><button id=button2><i class="fas fa-edit"></i>&nbsp;&nbsp;Update</button></a>
-                            <a href="course_delete_entry_form.php"><button id=button3><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;&nbsp;Delete</button></a>
+                            <a href="course_delete_entry_form.php"><button id=button2><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;&nbsp;Delete</button></a>
+                            <a href="course_open_form.php"><button id=button2><i class="fas fa-door-open"></i>&nbsp;&nbsp;Open Course</button></a>
+                            <a href="course_open_update_entry_form.php"><button id=button2><i class="fas fa-door-open"></i>&nbsp;&nbsp;Update Open Course</button></a>
+                            <a href="course_cencle_entry_form.php"><button id=button2><i class="fas fa-door-closed"></i>&nbsp;&nbsp;Cencle Open Course</button></a>
+                            <a href="course_history_form.php"><button id=button3><i class="fas fa-history"></i>&nbsp;&nbsp;&nbsp;Report</button></a>
                         </div>
                     </div>
-                        <button type="submit" name="studententryinthecourse" id="button4">&nbsp;<i class="fa fa-list-ul fa-lg"></i>&nbsp;&nbsp;Student Entry In The Course</button><br>
-                        <button type="submit" name="studententryintheresultsheet" id="button4">&nbsp;&nbsp;<i class="fa fa-clipboard-list fa-lg"></i>&nbsp;&nbsp;Student Entry In The Result Sheet</button><br>
-                        <button type="submit" name="passwordchange" id="button4">&nbsp;<i class="fa fa-key fa-lg"></i>&nbsp;&nbsp;Password Change</button><br> 
-                    
+                    <div id="fulldropbox">
+                        <button class="dropdownjs5" id="button">&nbsp;&nbsp;<i class="fa fa-list-ul fa-lg"></i>&nbsp;&nbsp;Student Entry In The Course<i class="fa fa-caret-down fa-lg icon"></i></button>
+                        <div id="dropdowncontainer5">
+                            <a href="16-31722-1.php"><button id=button2><i class="fas fa-plus-square fa-lg"></i>&nbsp;&nbsp;Entry</button></a>
+                            <a href="16-31722-1.php"><button id=button2><i class="fas fa-edit"></i>&nbsp;&nbsp;Update</button></a>
+                            <a href="16-31722-1.php"><button id=button3><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;&nbsp;Exit</button></a>
+                        </div>
+                    </div>
+                    <a href="16-31722-1_passwordchange.php"><button id=button4>&nbsp;&nbsp;<i class="fa fa-key fa-lg"></i>&nbsp;&nbsp;Password Change</button></a>
                 </td>
             </tr>
         </table>
-        <script src="js/navbar.js"></script>
+        <script src="js/navbar1.js"></script>
     </body>
 </html>

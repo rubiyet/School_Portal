@@ -38,6 +38,18 @@
 }
 #dropdowncontainer3{
     display: none;
+    height: 315px;
+}
+#dropdowncontainer4{
+    display: none;
+    height: 135px;
+}
+#dropdowncontainer5{
+    display: none;
+    height: 135px;
+}
+#dropdowncontainer6{
+    display: none;
     height: 135px;
 }
 #button2{
@@ -79,16 +91,6 @@
     padding-left: 9px;
 }
 #fulldropbox{
-    margin-bottom: 5px;
-    border-radius: 6px;
-    border: 1px solid #004EA2;
-}
-#fulldropbox1   {
-    margin-bottom: 5px;
-    border-radius: 6px;
-    border: 1px solid #004EA2;
-}
-#fulldropbox2{
     margin-bottom: 5px;
     border-radius: 6px;
     border: 1px solid #004EA2;

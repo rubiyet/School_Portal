@@ -83,7 +83,7 @@
 																<select name="input_year" id="input_year">
 																<option disabled selected>Year</option>
 																	<?php 
-																		foreach($year as $y){
+																		foreach($year1 as $y){
 																			if($y == $input_year) 
 																				echo "<option selected>$y</option>"; 
 																			else  
@@ -107,7 +107,7 @@
 														<td><select name="blood_group" id="blood_group">
 																<option disabled selected>Blood Group</option>
 																<?php 
-																	foreach($blood as $b){
+																	foreach($blood1 as $b){
 																		if($b == $blood_group) 
 																			echo "<option selected>$b</option>"; 
 																		else 
@@ -151,7 +151,7 @@
 																<select name="join_year" id="join_year">
 																<option disabled selected>Year</option>
 																	<?php 
-																		foreach($year as $y){
+																		foreach($year1 as $y){
 																			if($y == $join_year) 
 																				echo "<option selected>$y</option>"; 
 																			else  
@@ -185,7 +185,7 @@
 																<select name="left_year" id="left_year">
 																<option disabled selected>Year</option>
 																	<?php 
-																		foreach($year as $y){
+																		foreach($year1 as $y){
 																			if($y == $left_year) 
 																				echo "<option selected>$y</option>"; 
 																			else  
