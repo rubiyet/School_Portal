@@ -31,7 +31,7 @@
                                             <table id="frameitem">
                                                 <tr>
                                                     <td align="right" width="40%" id="subtitle" height="30px">
-                                                        Admin ID: 
+                                                        Teacher ID: 
                                                     </td>
                                                     <td >
                                                         <?php if(!empty($teacher["userid"])){echo $teacher["userid"];} ?>

@@ -26,7 +26,8 @@
                         <div id="dropdowncontainer1"> 
                             <a href="18-37646-1_teacher_info_insert.php"><button id=button2><i class="fas fa-plus-square fa-lg"></i>&nbsp;&nbsp;Insert</button></a>
                             <a href="18-37646-1_teacher_info_update.php"><button id=button2><i class="fas fa-edit"></i>&nbsp;&nbsp;Update</button></a>
-                            <a href="18-37646-1_teacher_info_delete.php"><button id=button3><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;&nbsp;Delete</button></a>
+                            <a href="18-37646-1_teacher_info_delete.php"><button id=button2><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;&nbsp;Delete</button></a>
+                            <a href="18-37646-1_teacher_enrollment.php"><button id=button3><i class="fa fa-id-card"></i>&nbsp;&nbsp;&nbsp;Enrollment</button></a>
                         </div>
                     </div>
                     <div id="fulldropbox">
@@ -34,7 +35,8 @@
                         <div id="dropdowncontainer2">  
                             <a href="17-35574-3_student.php"><button id=button2><i class="fas fa-plus-square fa-lg"></i>&nbsp;&nbsp;Insert</button></a>
                             <a href="17-35574-3_studentuinfo.php"><button id=button2><i class="fas fa-edit"></i>&nbsp;&nbsp;Update</button></a>
-                            <a href="17-35574-3_studentadmitted.php"><button id=button3><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;&nbsp;Delete</button></a>
+                            <a href="17-35574-3_studentadmitted.php"><button id=button2><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;&nbsp;Delete</button></a>
+                            <a href="17-35574-3_student_enrollment.php"><button id=button3><i class="fa fa-id-card"></i>&nbsp;&nbsp;&nbsp;Enrollment</button></a>
                         </div>
                     </div>
                     <div id="fulldropbox">
@@ -68,9 +70,9 @@
                     <div id="fulldropbox">
                         <button class="dropdownjs5" id="button">&nbsp;&nbsp;<i class="fa fa-list-ul fa-lg"></i>&nbsp;&nbsp;Student Entry In The Course<i class="fa fa-caret-down fa-lg icon"></i></button>
                         <div id="dropdowncontainer5">
-                            <a href="16-31722-1.php"><button id=button2><i class="fas fa-plus-square fa-lg"></i>&nbsp;&nbsp;Entry</button></a>
-                            <a href="16-31722-1.php"><button id=button2><i class="fas fa-edit"></i>&nbsp;&nbsp;Update</button></a>
-                            <a href="16-31722-1.php"><button id=button3><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;&nbsp;Exit</button></a>
+                            <a href="16-31722-1_studentEntry.php"><button id=button2><i class="fas fa-plus-square fa-lg"></i>&nbsp;&nbsp;Entry</button></a>
+                            <a href="16-31722-1_update 2.php"><button id=button2><i class="fas fa-edit"></i>&nbsp;&nbsp;Update</button></a>
+                            <a href="16-31722-1_delete.php"><button id=button3><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;&nbsp;Delete</button></a>
                         </div>
                     </div>
                     <a href="16-31722-1_passwordchange.php"><button id=button4>&nbsp;&nbsp;<i class="fa fa-key fa-lg"></i>&nbsp;&nbsp;Password Change</button></a>

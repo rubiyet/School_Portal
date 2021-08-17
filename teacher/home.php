@@ -39,7 +39,7 @@
                                                     $flag3 = 0;
                                                     $flag4 = 0;
                                                     foreach($classschedule as $cs){ 
-                                                        if(substr($cs["schedule"],0,3) == "Sun"){
+                                                        if(substr($cs["schedule"],0,3) == "Sun"){ 
                                                             echo "<tr>";
                                                             echo "<td>";
                                                             echo "<table width='100%'' ";
@@ -49,11 +49,11 @@
                                                                 if(substr($cs["schedule"],0,3) == "Sun"){
                                                                     if($flag1 == 0){
                                                                         $flag1 = 1;
-                                                                        echo "<td width='' style='padding:3px;'><span style='font-size: 13px; color:#428BCA;'><b>".$cs["coursename"]." [".$cs["section"]."]</b></span><br><span style='font-size: 12px;'>Time: <b>".$cs["schedule"]."</b></td>";
+                                                                        echo "<td width='' style='padding:3px;'><a href='courses_and_results2.php?cs_id=".$cs["cs_id"]."&semester=".$cs["semester"]."'><span style='font-size: 13px; color:#428BCA;'><b>".$cs["coursename"]." [".$cs["section"]."]</b></span></a><br><span style='font-size: 12px;'>Time: <b>".$cs["schedule"]."</b></td>";
                                                                     }
                                                                     else if($flag1 == 1){
                                                                         $flag1 = 0;
-                                                                        echo "<td width='' style='padding:3px;'><span style='font-size: 13px; color:#428BCA;'><b>".$cs["coursename"]." [".$cs["section"]."]</b></span><br><span style='font-size: 12px;'>Time: <b>".$cs["schedule"]."</b></td>";
+                                                                        echo "<td width='' style='padding:3px;'><a href='courses_and_results2.php?cs_id=".$cs["cs_id"]."&semester=".$cs["semester"]."'><span style='font-size: 13px; color:#428BCA;'><b>".$cs["coursename"]." [".$cs["section"]."]</b></span><br></a><span style='font-size: 12px;'>Time: <b>".$cs["schedule"]."</b></td>";
                                                                         echo "</tr>";
                                                                     }     
                                                                 }
@@ -83,11 +83,11 @@
                                                                 if(substr($cs["schedule"],0,3) == "Mon"){
                                                                     if($flag2 == 0){
                                                                         $flag2 = 1;
-                                                                        echo "<td width='' style='padding:3px;'><span style='font-size: 13px; color:#428BCA;'><b>".$cs["coursename"]." [".$cs["section"]."]</b></span><br><span style='font-size: 12px;'>Time: <b>".$cs["schedule"]."</b></td>";
+                                                                        echo "<td width='' style='padding:3px;'><a href='courses_and_results2.php?cs_id=".$cs["cs_id"]."&semester=".$cs["semester"]."'><span style='font-size: 13px; color:#428BCA;'><b>".$cs["coursename"]." [".$cs["section"]."]</b></span></a><br><span style='font-size: 12px;'>Time: <b>".$cs["schedule"]."</b></td>";
                                                                     }
                                                                     else if($flag2 == 1){
                                                                         $flag2 = 0;
-                                                                        echo "<td width='' style='padding:3px;'><span style='font-size: 13px; color:#428BCA;'><b>".$cs["coursename"]." [".$cs["section"]."]</b></span><br><span style='font-size: 12px;'>Time: <b>".$cs["schedule"]."</b></td>";
+                                                                        echo "<td width='' style='padding:3px;'><a href='courses_and_results2.php?cs_id=".$cs["cs_id"]."&semester=".$cs["semester"]."'><span style='font-size: 13px; color:#428BCA;'><b>".$cs["coursename"]." [".$cs["section"]."]</b></span></a><br><span style='font-size: 12px;'>Time: <b>".$cs["schedule"]."</b></td>";
                                                                         echo "</tr>";
                                                                     }     
                                                                 }
@@ -117,11 +117,11 @@
                                                                 if(substr($cs["schedule"],0,3) == "Tue"){
                                                                     if($flag3 == 0){
                                                                         $flag3 = 1;
-                                                                        echo "<td width='' style='padding:3px;'><span style='font-size: 13px; color:#428BCA;'><b>".$cs["coursename"]." [".$cs["section"]."]</b></span><br><span style='font-size: 12px;'>Time: <b>".$cs["schedule"]."</b></td>";
+                                                                        echo "<td width='' style='padding:3px;'><a href='courses_and_results2.php?cs_id=".$cs["cs_id"]."&semester=".$cs["semester"]."'><span style='font-size: 13px; color:#428BCA;'><b>".$cs["coursename"]." [".$cs["section"]."]</b></span></a><br><span style='font-size: 12px;'>Time: <b>".$cs["schedule"]."</b></td>";
                                                                     }
                                                                     else if($flag3 == 1){
                                                                         $flag3 = 0;
-                                                                        echo "<td width='' style='padding:3px;'><span style='font-size: 13px; color:#428BCA;'><b>".$cs["coursename"]." [".$cs["section"]."]</b></span><br><span style='font-size: 12px;'>Time: <b>".$cs["schedule"]."</b></td>";
+                                                                        echo "<td width='' style='padding:3px;'><a href='courses_and_results2.php?cs_id=".$cs["cs_id"]."&semester=".$cs["semester"]."'><span style='font-size: 13px; color:#428BCA;'><b>".$cs["coursename"]." [".$cs["section"]."]</b></span></a><br><span style='font-size: 12px;'>Time: <b>".$cs["schedule"]."</b></td>";
                                                                         echo "</tr>";
                                                                     }     
                                                                 }
@@ -151,11 +151,11 @@
                                                                 if(substr($cs["schedule"],0,3) == "Wed"){
                                                                     if($flag4 == 0){
                                                                         $flag4 = 1;
-                                                                        echo "<td width='' style='padding:3px;'><span style='font-size: 13px; color:#428BCA;'><b>".$cs["coursename"]." [".$cs["section"]."]</b></span><br><span style='font-size: 12px;'>Time: <b>".$cs["schedule"]."</b></td>";
+                                                                        echo "<td width='' style='padding:3px;'><a href='courses_and_results2.php?cs_id=".$cs["cs_id"]."&semester=".$cs["semester"]."'><span style='font-size: 13px; color:#428BCA;'><b>".$cs["coursename"]." [".$cs["section"]."]</b></span></a><br><span style='font-size: 12px;'>Time: <b>".$cs["schedule"]."</b></td>";
                                                                     }
                                                                     else if($flag4 == 1){
                                                                         $flag4 = 0;
-                                                                        echo "<td width='' style='padding:3px;'><span style='font-size: 13px; color:#428BCA;'><b>".$cs["coursename"]." [".$cs["section"]."]</b></span><br><span style='font-size: 12px;'>Time: <b>".$cs["schedule"]."</b></td>";
+                                                                        echo "<td width='' style='padding:3px;'><a href='courses_and_results2.php?cs_id=".$cs["cs_id"]."&semester=".$cs["semester"]."'><span style='font-size: 13px; color:#428BCA;'><b>".$cs["coursename"]." [".$cs["section"]."]</b></span></a><br><span style='font-size: 12px;'>Time: <b>".$cs["schedule"]."</b></td>";
                                                                         echo "</tr>";
                                                                     }     
                                                                 }

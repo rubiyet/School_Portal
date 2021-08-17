@@ -25,41 +25,41 @@
                                             <table id="">
 												<form action="" onsubmit="return teachervalidatebyjs()" method="POST">
 													<tr>
-														<td align="right">Teacher ID:</td>
+														<td align="right"><span style="color:blue;">Teacher ID:</span></td>
 														<td><input type="text" name="teacherid" id="teacherid" value="<?php echo $teacherid; ?>"></td>
 														<td><span id="error_teacherid"><?php echo $error_teacherid?></span></td>
 													</tr>
 													<tr>
-														<td align="right">Name:</td>
-														<td><input type="text" name="name" id="name" value="<?php echo $name; ?>"> </td>
+														<td align="right"><span style="color:blue;">Name:</span></td>
+														<td><input type="text" name="name" id="name" value="<?php echo $tname; ?>"> </td>
 														<td><span id="error_name"><?php echo $error_name;?></span></td>
 													</tr>
 													<tr>
-														<td align="right">Salary:</td>
+														<td align="right"><span style="color:blue;">Salary:</span></span></td>
 														<td><input type="text" name="salary" id="salary" value="<?php echo $salary; ?>"></td>
 														<td><span id="error_salary"><?php echo $error_salary?></span></td>
 													</tr>
 													<tr>
-														<td align="right">Email:</td>
-														<td><input type="text" name="email" id="email" value="<?php echo $email; ?>"></td>
+														<td align="right"><span style="color:blue;">Email:</span></span></td>
+														<td><input type="text" name="email" id="email" value="<?php echo $temail; ?>"></td>
 														<td><span id="error_email"><?php echo $error_email;?></span></td>
 													</tr>
 													<tr>
-														<td align="right">Gender</td>
+														<td align="right"><span style="color:blue;">Gender:</span></td>
 														<td>: <input type="radio" name="gender" value="Male" 
 															<?php 
-																if($gender=="Male") 
+																if($tgender=="Male") 
 																	echo "checked"; 
 																?>> Male 
 															<input type="radio" name="gender" value="Female"
 															<?php 
-																if($gender=="Female") 
+																if($tgender=="Female") 
 																	echo "checked"; 
 																?>> Female </td>
 														<td><span id="error_gender"><?php echo $error_gender;?></span></td>
 													</tr>
 													<tr>
-														<td align="right">Date of Birth:</td>
+														<td align="right"><span style="color:blue;">Date of Birth:</span></span></td>
 														<td><select name="input_day" id="input_day">
 																<option disabled selected>Day</option>
 																<?php 
@@ -93,17 +93,17 @@
 														<td><span id="error_input_date_of_birth"><?php echo $error_input_date_of_birth;?></span></td>
 													</tr>
 													<tr>
-														<td align="right">Nationality:</td>
+														<td align="right"><span style="color:blue;">Nationality:</span></td>
 														<td><input type="text" name="nationality" id="nationality" value="<?php echo $nationality; ?>"></td>
 														<td><span id="error_nationality"><?php echo $error_nationality;?></span></td>
 													</tr>
 													<tr>
-														<td align="right">Religion:</td>
-														<td><input type="text" name="religion" id="religion" value="<?php echo $religion; ?>"></td>
+														<td align="right"><span style="color:blue;">Religion::</span></td>
+														<td><input type="text" name="religion" id="religion" value="<?php echo $treligion; ?>"></td>
 														<td><span id="error_religion"><?php echo $error_religion;?></span></td>
 													</tr>
 													<tr>
-														<td align="right">Blood Group:</td>
+														<td align="right"><span style="color:blue;">Blood Group:</span></td>
 														<td><select name="blood_group" id="blood_group">
 																<option disabled selected>Blood Group</option>
 																<?php 
@@ -117,17 +117,17 @@
 														<td><span id="error_blood_group"><?php echo $error_blood_group;?></span></td>
 													</tr>
 													<tr>
-														<td align="right">Father Name:</td>
+														<td align="right"><span style="color:blue;">Father Name:</span></td>
 														<td><input type="text" name="father_name" id="father_name" value="<?php echo $father_name; ?>"> </td>
 														<td><span id="error_father_name"><?php echo $error_father_name;?></span></td>
 													</tr>
 													<tr>
-														<td align="right">Mother Name:</td>
+														<td align="right"><span style="color:blue;">Mother Name:</span></td>
 														<td><input type="text" name="mother_name" id="mother_name" value="<?php echo $mother_name; ?>"> </td>
 														<td><span id="error_mother_name"><?php echo $error_mother_name;?></span></td>
 													</tr>
 													<tr>
-														<td align="right">Join Date:</td>
+														<td align="right"><span style="color:blue;">Join Date:</span></td>
 														<td><select name="join_day" id="join_day">
 																<option disabled selected>Day</option>
 																<?php 
@@ -161,7 +161,7 @@
 														<td><span id="error_join_date"><?php echo $error_join_date;?></span></td>
 													</tr>
 													<tr>
-														<td align="right">Left Date:</td>
+														<td align="right"><span style="color:blue;">Left Date:</span></td>
 														<td><select name="left_day" id="left_day">
 																<option disabled selected>Day</option>
 																<?php 
@@ -195,7 +195,7 @@
 														<td><span id="error_left_date"><?php echo $error_left_date;?></span></td>
 													</tr>
 													<tr>
-														<td align="right">Qualification:</td>
+														<td align="right"><span style="color:blue;">Qualification:</span></td>
 														<td><input type="checkbox" name="qualifications[]" value="BSC"
 															<?php if(qualificationExist("BSC")) 
 																echo "checked";
@@ -212,24 +212,24 @@
 														<td><span id="error_qualifications"><?php echo $error_qualifications;?></span></td>
 													</tr>
 													<tr>
-														<td align="right">Present Address:</td>
+														<td align="right"><span style="color:blue;">Present Address:</span></td>
 														<td><input type="text" name="present_address" id="present_address" value="<?php echo $present_address; ?>"></td>
 														<td><span id="error_present_address"><?php echo $error_present_address?><span></td>
 													</tr>
 													<tr>
-														<td align="right">Parmanent Address:</td>
+														<td align="right"><span style="color:blue;">Parmanent Address:</span></td>
 														<td><input type="text" name="parmanent_address" id="parmanent_address" value="<?php echo $parmanent_address; ?>"></td>
 														<td><span id="error_parmanent_address"><?php echo $error_parmanent_address?></span></td>
 													</tr>
 													<tr>
-														<td align="right">Contact Number:</td>
+														<td align="right"><span style="color:blue;">Contact Number:</span></td>
 														<td><input type="text" name="contact_number" id="contact_number" value="<?php echo $contact_number; ?>"></td>
 														<td><span id="error_contact_number"><?php echo $error_contact_number?></span></td>
 													</tr>
 													<tr>
 														<td></td>
 														<td align="center">
-															<input type="Submit" name="submit" value="Insert">
+															<input type="Submit" name="submit" value="Insert" style="background-color:gray;color:white">
 														</td>
 													</tr>
 												</form>

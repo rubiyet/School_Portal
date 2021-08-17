@@ -98,4 +98,117 @@ function updateadminpassword($new_password){
     $query = "update users set pass='$new_password' where id=$adminidforpasswordchange";
     return execute($query);
 }
+
+	$student_enroll_id="";
+	$err_student_enroll_id="";
+	
+	$student_id="";
+	$err_student_id="";
+	
+	$course_id="";
+	$err_course_id="";
+	
+	
+	
+	
+	
+	if (isset($_GET["id"])){
+		$id=$_GET["id"];
+	}
+	
+	$hasError=false;
+	
+	if(isset($_POST["submit"])){
+		
+		if(empty($_POST["studentid"])){
+			$hasError = true;
+			$err_student_id=" Student Id Required";
+		}
+		else{
+			$student_id = $_POST["studentid"];
+		}
+		
+		if(empty($_POST["courseid"])){
+			$hasError = true;
+			$err_course_id=" Course Id Required";
+		}
+		else{
+			$course_id = $_POST["courseid"];
+		}
+		
+		
+		
+		if(!$hasError){
+				$data = insertstudentenrollment($student_id,$course_id);
+				
+        }
+		
+
+    
+		
+		
+	}
+	
+	function insertstudentenrollment($student_id,$course_id){
+        $query = "insert into studentenrollment values(Null,'$student_id','$course_id','0','0','0')";
+        return execute($query);
+    }	
+	if(isset($_POST["deletestudententryinthecourse"])){
+		if(empty($_POST["studentenrollid"])){
+			$hasError = true;
+			$err_student_enroll_id="Student Enroll Id Required";
+		}
+		else{
+			$student_enroll_id = $_POST["studentenrollid"];
+		}
+		
+		if(!$hasError){
+            $data = deletestudentenrollment($student_enroll_id);
+            
+        }
+}	
+	function deletestudentenrollment($student_enroll_id){
+        $query = "delete from Studentenrollment where studentenrollmentid='$student_enroll_id'";
+        return execute($query);
+    }
+	function studentenrollmentinthecourse(){
+		$query ="select * from Studentenrollment ";
+		$data = get($query);
+		return $data;
+	}
+	function getstudentenrollmentinthecourse($id){
+		$query="select * from Studentenrollment where studentenrollmentid='$id'";
+		$data= get($query);
+		return $data[0];
+	}
+	
+		if(isset($_POST["updatestudententryinthecourse"])){
+		if(empty($_POST["studentid"])){
+			$hasError = true;
+			$err_student_id=" Student Id Required";
+		}
+		else{
+			$student_id = $_POST["studentid"];
+		}
+		
+		if(empty($_POST["courseid"])){
+			$hasError = true;
+			$err_course_id=" Course Id Required";
+		}
+		else{
+			$course_id = $_POST["courseid"];
+		}
+		
+		
+			if(!$hasError){
+            $data = updatestudentenrollment($student_id,$course_id);
+			}
+	}
+		function updatestudentenrollment($student_id,$course_id){
+		global $id;
+			$query = "update studentenrollment set studentid='$student_id', course_semester_id='$course_id' where studentenrollmentid='$id'";
+			return execute($query);
+			
+			
+		}
 ?>

@@ -22,6 +22,13 @@
 										<td colspan="3" id="title" valign="center">TEACHER PERSONAL INFORMATION UPDATE</td>
 									</tr>
 									<tr>
+										<td valign="top" height="10px">Search: <input type="text" name="adminid1" onkeyup="teacher_search(this)"></td>
+									</tr>
+									<tr>
+										<td><div id="teacher_suggesstion1"></div></td>
+									</tr>
+									</tr>
+									<tr>
 										<td valign="top" align="center">
 											<table id="">
 												<thead>
@@ -62,6 +69,27 @@
                 <td width="18.5%"></td>
             </tr>
         </table>
+		<<script>
+			function get(id){
+				return document.getElementById(id);
+			}
+			function teacher_search(e){
+				if(e.value == ""){
+					get("teacher_suggesstion1").innerHTML = "";
+				}
+				else{
+					var xhr = new XMLHttpRequest();
+					xhr.open("GET","18-37646-1_teacher_info_update2.php?userid="+e.value,true);
+					xhr.onreadystatechange=function(){
+						if(this.readyState == 4 && this.status == 200){
+							document.getElementById("teacher_suggesstion1").style.overflowY = "scroll";
+							get("teacher_suggesstion1").innerHTML = this.responseText;
+						}
+					};
+					xhr.send();
+				}
+			}
+		</script>
 	</body>	
 </html>
 

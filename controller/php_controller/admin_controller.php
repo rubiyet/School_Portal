@@ -131,7 +131,7 @@
 				$error_adminid = "User Id like as (**-1***)";
 			}
 			else{
-				$adminid = $_POST["adminid"];
+				$adminid = filter_var($_POST["adminid"],FILTER_SANITIZE_STRING);
 			}	
 		}
 
@@ -160,7 +160,7 @@
                 $error_name = "Name must be contain only Letter";
             }
             else{
-                $name = $_POST["name"];
+                $name = filter_var($_POST["name"],FILTER_SANITIZE_STRING);
             }
         }
         if(empty($_POST["salary"])){
@@ -209,7 +209,7 @@
                 $error_email = "Sorry, someone only letters (a-z), numbers (0-9), and periods (.) are allowed.";
             }
             else{  
-                $email=$_POST["email"];
+                $email = filter_var($_POST["email"],FILTER_SANITIZE_STRING);
             }
         }
         if(!isset($_POST["gender"])){
@@ -275,7 +275,7 @@
                 $error_fathername = "Father Name must be contain only Letter";
             }
             else{
-                $fathername = $_POST["fathername"];
+                $fathername = filter_var($_POST["fathername"],FILTER_SANITIZE_STRING);
             }
         }
         if(empty($_POST["mothername"])){
@@ -303,7 +303,7 @@
                 $error_mothername = "Mother Name must be contain only Letter";
             }
             else{
-                $mothername = $_POST["mothername"];
+                $mothername = filter_var($_POST["mothername"],FILTER_SANITIZE_STRING);
             }
         }
         if (!isset($_POST["inputjday"]) || !isset($_POST["inputjmonth"]) || !isset($_POST["inputjyear"])){
@@ -339,7 +339,7 @@
 			$error_parmanentaddress ="Parmanent Address Must be Required";
 		}
         else if(!empty($_POST["parmanentaddress"]) && !isset($_POST["sameaspresentaddress"])){
-			$parmanentaddress = $_POST["parmanentaddress"];
+			$parmanentaddress = filter_var($_POST["parmanentaddress"],FILTER_SANITIZE_STRING);
 		}
 
         if(empty($_POST["contactnumber"])){
@@ -351,7 +351,7 @@
             $error_contactnumber = "Contact Number Must be Number";
         }
         else{
-            $contactnumber = $_POST["contactnumber"];
+            $contactnumber = filter_var($_POST["contactnumber"],FILTER_SANITIZE_STRING);
         }
         if(empty($_POST["qualifications"])){
             $error = true;
@@ -502,7 +502,7 @@
 				$error_adminid1 = "User Id like as (**-1***)";
 			}
 			else{
-				$adminid2 = $_POST["adminid1"];
+				$adminid2 = filter_var($_POST["adminid1"],FILTER_SANITIZE_STRING);
 			}	
 		}
         if(!$error){
@@ -649,7 +649,7 @@
 				$error_adminid = "User Id like as (**-1***)";
 			}
 			else{
-				$adminid = $_POST["adminid"];
+				$adminid = filter_var($_POST["adminid"],FILTER_SANITIZE_STRING);
 			}	
 		}
         if(empty($_POST["name"])){
@@ -677,7 +677,7 @@
                 $error_name = "Name must be contain only Letter";
             }
             else{
-                $name = $_POST["name"];
+                $name = filter_var($_POST["name"],FILTER_SANITIZE_STRING);
             }
         }
         if(empty($_POST["salary"])){
@@ -723,7 +723,7 @@
                 $error_email = "Sorry, someone only letters (a-z), numbers (0-9), and periods (.) are allowed.";
             }
             else{  
-                $email=$_POST["email"];
+                $email = filter_var($_POST["email"],FILTER_SANITIZE_STRING);
             }
         }
         if(!isset($_POST["gender"])){
@@ -789,7 +789,7 @@
                 $error_fathername = "Father Name must be contain only Letter";
             }
             else{
-                $fathername = $_POST["fathername"];
+                $fathername = filter_var($_POST["fathername"],FILTER_SANITIZE_STRING);
             }
         }
         if(empty($_POST["mothername"])){
@@ -817,7 +817,7 @@
                 $error_mothername = "Mother Name must be contain only Letter";
             }
             else{
-                $mothername = $_POST["mothername"];
+                $mothername = filter_var($_POST["mothername"],FILTER_SANITIZE_STRING);
             }
         }
         if (!isset($_POST["inputjday"]) || !isset($_POST["inputjmonth"]) || !isset($_POST["inputjyear"])){
@@ -843,7 +843,7 @@
 			$error_presentaddress ="Present Address Must be Required";
 		}
 		else{
-			$presentaddress = $_POST["presentaddress"];
+			$presentaddress = filter_var($_POST["presentaddress"],FILTER_SANITIZE_STRING);
 		}
         if(isset($_POST["sameaspresentaddress"])){
             $parmanentaddress = $_POST["presentaddress"];
@@ -853,7 +853,7 @@
 			$error_parmanentaddress ="Parmanent Address Must be Required";
 		}
         else if(!empty($_POST["parmanentaddress"]) && !isset($_POST["sameaspresentaddress"])){
-			$parmanentaddress = $_POST["parmanentaddress"];
+			$parmanentaddress = filter_var($_POST["parmanentaddress"],FILTER_SANITIZE_STRING);
 		}
 
         if(empty($_POST["contactnumber"])){
@@ -865,7 +865,7 @@
             $error_contactnumber = "Contact Number Must be Number";
         }
         else{
-            $contactnumber = $_POST["contactnumber"];
+            $contactnumber = filter_var($_POST["contactnumber"],FILTER_SANITIZE_STRING);
         }
         if(empty($_POST["qualifications"])){
             $error = true;
@@ -1022,7 +1022,7 @@
 				$error_adminid1 = "User Id like as (**-1***)";
 			}
 			else{
-				$adminid2 = $_POST["adminid1"];
+				$adminid2 = filter_var($_POST["adminid1"],FILTER_SANITIZE_STRING);
 			}	
 		}
         if(!$error){
@@ -1539,7 +1539,7 @@
     $error = false;
 
     $arr_schedule = array("Sun 08.00AM - 11.00AM","Sun 11.00AM - 02.00PM","Sun 02.00PM - 05.00PM","Mon 08.00AM - 11.00AM","Mon 11.00AM - 02.00PM","Mon 02.00PM - 05.00PM","Tue 08.00AM - 11.00AM","Tue 11.00AM - 02.00PM","Tue 02.00PM - 05.00PM","Wed 08.00AM - 11.00AM","Wed 11.00AM - 02.00PM","Wed 02.00PM - 05.00PM");
-    $arr_course_status = array("registration","ongoing","completed");
+    $arr_course_status = array("For Registration","Ongoing","Completed");
 
     if(isset($_POST["courseinsert"])){
         if(empty($_POST["courseid"])){
@@ -1583,7 +1583,7 @@
 				$error_courseid = "Course Id like as (**-4***)";
 			}
 			else{
-				$courseid = $_POST["courseid"];
+				$courseid = filter_var($_POST["courseid"],FILTER_SANITIZE_STRING);
 			}	
 		}
         if(empty($_POST["coursename"])){
@@ -1610,7 +1610,7 @@
                 $error_coursename = "Course name must be contain only Letter";
             }
             else{
-                $coursename = $_POST["coursename"];
+                $coursename = filter_var($_POST["coursename"],FILTER_SANITIZE_STRING);
             }
         } 
         if(!$error){
@@ -1677,7 +1677,7 @@
 				$error_courseid = "Course Id like as (**-4***)";
 			}
 			else{
-				$courseid = $_POST["courseid"];
+				$courseid = filter_var($_POST["courseid"],FILTER_SANITIZE_STRING);
 			}	
 		}
         if(!$error){
@@ -1768,7 +1768,7 @@
 				$error_courseid = "Course Id like as (**-4***)";
 			}
 			else{
-				$courseid = $_POST["courseid"];
+				$courseid = filter_var($_POST["courseid"],FILTER_SANITIZE_STRING);
 			}	
 		}
         if(empty($_POST["coursename"])){
@@ -1796,7 +1796,7 @@
                 $error_coursename = "Course name must be contain only Letter";
             }
             else{
-                $coursename = $_POST["coursename"];
+                $coursename = filter_var($_POST["coursename"],FILTER_SANITIZE_STRING);
             }
         } 
         if(!$error){
@@ -1864,7 +1864,7 @@
 				$error_courseid = "Course Id like as (**-4***)";
 			}
 			else{
-				$courseid = $_POST["courseid"];
+				$courseid = filter_var($_POST["courseid"],FILTER_SANITIZE_STRING);
 			}	
 		}
         if(!$error){
@@ -2049,13 +2049,13 @@
     }
 
     function allsemestercourseid(){
-        $query = "select * from course_semester order by id desc";
+        $query = "select * from course_semester order by cs_id desc";
         $data = get($query);
         if(count($data) > 0){
             $c = $data;
             $ca = array();
             foreach ($c as $n => $n_value) {
-                $ca[] = $n_value["id"].", ".$n_value["courseid"];
+                $ca[] = $n_value["cs_id"].", ".$n_value["courseid"];
             }
             return $ca;
         }
@@ -2074,7 +2074,7 @@
 		}	
         if(!$error){
             if($co = authenticateforcourseidforopenUD(substr($courseid,0,-9))){
-                setcookie("courseidopenforUD",$co["id"],time()+1200,"/");
+                setcookie("courseidopenforUD",$co["cs_id"],time()+1200,"/");
                 header("Location: course_open_update_form.php");
             }
             else{
@@ -2085,7 +2085,7 @@
     }
 
     function authenticateforcourseidforopenUD($courseid){
-        $query = "select * from course_semester where id = '$courseid'";
+        $query = "select * from course_semester where cs_id = '$courseid'";
         $data = get($query);
         if(count($data) > 0){
             return $data[0];
@@ -2105,7 +2105,7 @@
 
     $teacherid1 = "";
     function getcourseopenupdate($courseidforopenUD){
-        $query =  "select * from course_semester inner join course on course_semester.courseid = course.courseid where course_semester.id = $courseidforopenUD";
+        $query =  "select * from course_semester inner join course on course_semester.courseid = course.courseid where course_semester.cs_id = $courseidforopenUD";
         $data = get($query); 
         if(count($data) > 0){
             global $courseid;
@@ -2128,7 +2128,7 @@
             $semester = $data[0]["semester"];
             $teacherid1 = $data[0]["teacherid"];
             $course_status = $data[0]["course_status"];
-            $semester_course_code = $data[0]["id"];
+            $semester_course_code = $data[0]["cs_id"];
 
             if(!empty($teacherid1)){
                 $query = "select * from teacher where userid= '$teacherid1'";
@@ -2160,13 +2160,13 @@
 
     function courseopenupdate($schedule,$capacity,$course_status,$semester,$teacherid){
         global $courseidopenforUD;
-        $query = "update course_semester set schedule='$schedule', capacity='$capacity', semester='$semester', teacherid='$teacherid' where id=$courseidopenforUD";
+        $query = "update course_semester set schedule='$schedule', capacity='$capacity', semester='$semester', teacherid='$teacherid' where cs_id = $courseidopenforUD";
         return execute($query);
     }
 
     function courseopenupdate1($schedule,$capacity,$course_status,$semester){
         global $courseidopenforUD;
-        $query = "update course_semester set schedule='$schedule', capacity='$capacity', course_status='$course_status', semester='$semester' where id=$courseidopenforUD";
+        $query = "update course_semester set schedule='$schedule', capacity='$capacity', course_status='$course_status', semester='$semester' cs_where id = $courseidopenforUD";
         return execute($query);
     }
 
@@ -2184,7 +2184,7 @@
 		}	
         if(!$error){
             if($co = authenticateforcourseidforopenUD($courseid)){
-                setcookie("courseidopenforUD",$co["id"],time()+1200,"/");
+                setcookie("courseidopenforUD",$co["cs_id"],time()+1200,"/");
                 header("Location: course_cencle_form.php");
             }
             else{
@@ -2204,7 +2204,7 @@
 
     function coursecencle(){
         global $courseidopenforUD;
-        $query = "delete from course_semester where id= $courseidopenforUD";
+        $query = "delete from course_semester where cs_id= $courseidopenforUD";
         return execute($query);
     }
 
@@ -2287,7 +2287,7 @@
 		}	
         if(!$error){
             if($co = authenticateforcourseidforopenUD($courseid)){
-                setcookie("courseidopenforUD",$co["id"],time()+1200,"/");
+                setcookie("courseidopenforUD",$co["cs_id"],time()+1200,"/");
                 header("Location: coursereport1.php");
             }
             else{

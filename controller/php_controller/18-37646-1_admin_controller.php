@@ -1,13 +1,14 @@
 <?php
+	
 	$teacherid="";
 	$error_teacherid="";
-	$name="";
+	$tname="";
 	$error_name="";
 	$salary="";
 	$error_salary="";
-	$email="";
+	$temail="";
 	$error_email="";
-	$gender="";
+	$tgender="";
 	$error_gender="";
 	$input_day="";
 	$input_month="";
@@ -15,7 +16,7 @@
 	$error_input_date_of_birth="";
 	$nationality="";
 	$error_nationality="";
-	$religion="";
+	$treligion="";
 	$error_religion="";
 	$blood_group="";
 	$error_blood_group="";
@@ -97,8 +98,8 @@
 				$error_teacherid = "User Id like as (**-2***)";
 			}
 			else{
-				$teacherid = $_POST["teacherid"];
-			}	
+				$teacherid = filter_var($_POST["teacherid"],FILTER_SANITIZE_STRING);
+			}
 		}
 		if(empty($_POST["name"])){
             $error = true;
@@ -124,7 +125,7 @@
                 $error_name = "Name must be Letter";
             }
             else{
-                $name = $_POST["name"];
+                $tname = filter_var($_POST["name"],FILTER_SANITIZE_STRING);
 			}
 		}
 		if(empty($_POST["salary"])){
@@ -136,7 +137,7 @@
 			$error_salary= "salary must be number";
 		}
 		else{
-			$salary = $_POST["salary"];
+			$salary = filter_var($_POST["salary"],FILTER_SANITIZE_STRING);
 		}	
 		if(empty($_POST["email"])){
 			$error = true;
@@ -151,14 +152,14 @@
 			$error_email="Email must contain . character";
         }
         else{
-            $email=$_POST["email"];
+            $temail=$_POST["email"];
         }
 		if(!isset($_POST["gender"])){
 			$error = true;
 			$error_gender="Gender not select";
 		}
 		else{
-			$gender = $_POST["gender"];
+			$tgender = filter_var($_POST["gender"],FILTER_SANITIZE_STRING);
 		}
 		if (!isset($_POST["input_day"])){
 			$error = true;
@@ -173,9 +174,9 @@
 			$error_input_date_of_birth="birth date not select";
 		}
 		else{
-			$input_day = $_POST["input_day"];
-			$input_month = $_POST["input_month"];
-			$input_year = $_POST["input_year"];
+			$input_day = filter_var($_POST["input_day"],FILTER_SANITIZE_STRING);
+			$input_month = filter_var($_POST["input_month"],FILTER_SANITIZE_STRING);
+			$input_year = filter_var($_POST["input_year"],FILTER_SANITIZE_STRING);
 		}
 		if(empty($_POST["nationality"])){
             $error = true;
@@ -201,7 +202,7 @@
                 $error_nationality = "Nationality must be Letter";
             }
             else{
-                $nationality = $_POST["nationality"];
+                $nationality = filter_var($_POST["nationality"],FILTER_SANITIZE_STRING);
 			}
 		}
 		if(empty($_POST["religion"])){
@@ -228,7 +229,7 @@
                 $error_religion = "religion must be Letter";
             }
             else{
-                $religion = $_POST["religion"];
+                $treligion = filter_var($_POST["religion"],FILTER_SANITIZE_STRING);
 			}
 		}
 		if (!isset($_POST["blood_group"])){
@@ -236,7 +237,7 @@
 			$error_blood_group="blood group not select";
 		}
 		else{
-			$blood_group = $_POST["blood_group"];
+			$blood_group = filter_var($_POST["blood_group"],FILTER_SANITIZE_STRING);
 		}
 		if(empty($_POST["father_name"])){
             $error = true;
@@ -262,7 +263,7 @@
                 $error_father_name = "Father Name must be Letter";
             }
             else{
-                $father_name = $_POST["father_name"];
+                $father_name = filter_var($_POST["father_name"],FILTER_SANITIZE_STRING);
 			}
 		}
 		if(empty($_POST["mother_name"])){
@@ -289,7 +290,7 @@
                 $error_mother_name = "Mother Name must be Letter";
             }
             else{
-                $mother_name = $_POST["mother_name"];
+                $mother_name = filter_var($_POST["mother_name"],FILTER_SANITIZE_STRING);
 			}
 		}
 		if (!isset($_POST["join_day"])){
@@ -305,9 +306,9 @@
 			$error_join_date="join date not select";
 		}
 		else{
-			$join_day = $_POST["join_day"];
-			$join_month = $_POST["join_month"];
-			$join_year = $_POST["join_year"];
+			$join_day = filter_var($_POST["join_day"],FILTER_SANITIZE_STRING);
+			$join_month = filter_var($_POST["join_month"],FILTER_SANITIZE_STRING);
+			$join_year = filter_var($_POST["join_year"],FILTER_SANITIZE_STRING);
 		}
 		if (!isset($_POST["left_day"])){
 			$error = true;
@@ -322,9 +323,9 @@
 			$error_left_date="left date not select";
 		}
 		else{
-			$left_day = $_POST["left_day"];
-			$left_month = $_POST["left_month"];
-			$left_year = $_POST["left_year"];
+			$left_day = filter_var($_POST["left_day"],FILTER_SANITIZE_STRING);
+			$left_month = filter_var($_POST["left_month"],FILTER_SANITIZE_STRING);
+			$left_year = filter_var($_POST["left_year"],FILTER_SANITIZE_STRING);
 		}
 		if(!isset($_POST["qualifications"])){
 			$error = true;
@@ -338,14 +339,14 @@
 			$error_present_address= "need present address";
 		}
 		else{
-			$present_address = $_POST["present_address"];
+			$present_address = filter_var($_POST["present_address"],FILTER_SANITIZE_STRING);
 		}
 		if(empty($_POST["parmanent_address"])){
 			$error = true;
 			$error_parmanent_address= "need parmanent address";
 		}
 		else{
-			$parmanent_address = $_POST["parmanent_address"];
+			$parmanent_address = filter_var($_POST["parmanent_address"],FILTER_SANITIZE_STRING);
 		}
 		if(empty($_POST["contact_number"])){
 			$error = true;
@@ -356,7 +357,7 @@
 			$error_contact_number= "contact number must be number";
 		}
 		else{
-			$contact_number = $_POST["contact_number"];
+			$contact_number = filter_var($_POST["contact_number"],FILTER_SANITIZE_STRING);
 		}
 	
 		if(!$error){
@@ -364,7 +365,7 @@
             $joiningdate = $join_day." ".$join_month." ".$join_year;
             $leftdate = $left_day." ".$left_month." ".$left_year;
             $qualificationsstring = implode(", ",$qualifications);
-            $data = insertteacher($teacherid,$name,$salary,$email,$gender,$birthday,$nationality,$religion,$blood_group,$father_name,$mother_name,$joiningdate,$leftdate,$qualificationsstring,$present_address,$parmanent_address,$contact_number);
+            $data = insertteacher($teacherid,$tname,$salary,$temail,$tgender,$birthday,$nationality,$treligion,$blood_group,$father_name,$mother_name,$joiningdate,$leftdate,$qualificationsstring,$present_address,$parmanent_address,$contact_number);
 			
 		}
 	}
@@ -380,6 +381,40 @@
 	function getTeacher($id){
         $query = "select * from teacher where id = $id";
         $rs = get($query);
+		global $teacherid;
+		global $name;
+		global $salary;
+		global $email;
+		global $gender;
+		global $birthday;
+		global $nationality;
+		global $religion;
+		global $blood_group;
+		global $father_name;
+		global $mother_name;
+		global $joining_day;
+		global $left_day;
+		global $qualifications;
+		global $present_address;
+		global $parmanent_address;
+		global $contact_number;
+		$teacherid = $rs[0]["userid"];
+		$name = $rs[0]["name"];
+		$salary = $rs[0]["salary"];
+		$email = $rs[0]["email"];
+		$gender = $rs[0]["gender"];
+		$birthday = $rs[0]["birthday"];
+		$nationality = $rs[0]["nationality"];
+		$religion = $rs[0]["religion"];
+		$blood_group = $rs[0]["bloodgroup"];
+		$father_name = $rs[0]["fathername"];
+		$mother_name = $rs[0]["mothername"];
+		$joining_day = $rs[0]["joiningdate"];
+		$left_day = $rs[0]["leftdate"];
+		$qualifications = $rs[0]["qualification"];
+		$present_address = $rs[0]["presentaddress"];
+		$parmanent_address = $rs[0]["parmanentaddress"];
+		$contact_number = $rs[0]["contactnumber"];
         return $rs[0];
     }
 	if(isset($_POST["btn_editteacher"])){
@@ -419,6 +454,14 @@
 		$query = "delete from teacher where id = $id";
 		return execute($query);
 	}
+
+	function teacher_search($userid){
+        $query = "select * from teacher where userid like '%$userid%'";
+        $data = get($query);
+        return $data;
+    }
+
+
 	//user account
 	$userid = "";
 	$error_userid = "";
@@ -488,7 +531,7 @@
 				$error_userid = "User Id like as (00-0000)";
 			}
 			else{
-				$userid = $_POST["userid"];
+				$userid = filter_var($_POST["userid"],FILTER_SANITIZE_STRING);
 			}	
 		}
 		if(!isset($_POST["type"])){
@@ -496,10 +539,10 @@
 			$error_type = "Type required.";
 		}
 		else{
-			$type = $_POST["type"];
+			$type = filter_var($_POST["type"],FILTER_SANITIZE_STRING);
 		}
 		if(isset($_POST["status"])){
-			$status = $_POST["status"];
+			$status = filter_var($_POST["status"],FILTER_SANITIZE_STRING);
 		}
 		if(isset($_POST["type"])){
 			if(strlen($_POST["userid"]) == 7){
@@ -569,7 +612,46 @@
 		$query = "delete from users where id = $id";
 		return execute($query);
 	}
-
+	//teacher
+	$teacher_enrollment_month="";
+	$teacher_enrollment_year="";
+	$teacher_enrollment_month_year="";
+	$error_teacher_enrollment_month_year="";
+	
+	if(isset($_POST["btn_teacher_enrollment"])){	
+		if(!isset($_POST["teacher_enrollment_month"]) && !isset($_POST["teacher_enrollment_year"])){
+			$error =true;
+			$error_teacher_enrollment_month_year="Only year or month year both required";
+		}
+        else if(isset($_POST["teacher_enrollment_month"]) && !isset($_POST["teacher_enrollment_year"])){
+			$error=true;
+			$teacher_enrollment_month=$_POST["teacher_enrollment_month"];
+			$error_teacher_enrollment_month_year="month and year both required";
+		}
+		else if(isset($_POST["teacher_enrollment_month"]) && isset($_POST["teacher_enrollment_year"])){
+			$teacher_enrollment_month_year=$_POST["teacher_enrollment_month"]." ".$_POST["teacher_enrollment_year"];
+		}
+        else if(isset($_POST["teacher_enrollment_year"])){
+			$teacher_enrollment_year=$_POST["teacher_enrollment_year"];
+		}
+		if(!$error){
+			if(!empty($teacher_enrollment_year)){
+				setcookie("joining_year",$teacher_enrollment_year,time()+3600);
+				header("location:18-37646-1_teacher_enrollment1.php");
+			}
+			else if(!empty($teacher_enrollment_month_year)){
+				setcookie("joining_year",$teacher_enrollment_month_year,time()+3600);
+				header("location:18-37646-1_teacher_enrollment1.php");
+			}
+		}
+	}
+	$joining_year="";
+	if(isset($_COOKIE["joining_year"])){
+		$joining_year=$_COOKIE["joining_year"];
+	}
+	function joiningyear($joining_year){
+		$query="select * from teacher where joiningdate like '%$joining_year%'";
+		$data=get($query);
+		return $data;
+	}
 ?>
-
-

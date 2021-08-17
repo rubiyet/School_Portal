@@ -9,8 +9,8 @@
   <link rel="stylesheet" href="css/admin_info_insertupdatedelete_form.css">
     <meta charset="utf-8">
 
-  <script>
-      var hasError=2;
+    <script>
+      var hasError=false;
       function get(id)
       {
         return document.getElementById(id);
@@ -21,11 +21,13 @@
 
 
        //===============================Name <Email , ID validations================================================
-       if(get("userid").value=="")
+        if(get("userid").value=="")
         {
           hasError = true;
           get("err_userid").innerHTML="*userid required";
         }
+ 
+
         if(get("name").value=="")
         {
           hasError = true;
@@ -34,7 +36,7 @@
         if(get("email").value=="")
         {
           hasError = true;
-          get("err_email").innerHTML="*email required";
+          get("err_email").innerHTML="*Email required";
 
 
 
@@ -42,69 +44,97 @@
 
 
         if(get("fname").value == ""){
-		error = 1;
+		hasError = true;
 		get("err_fname").innerHTML = "* Father Name Required";
 	}
-	else if(get("fame").value.length < 3){
-		error = 1;
-		get("err_fname").innerHTML = "*Father Name greater then 2 letter";
-	}
+	
+
+
 
   if(get("mname").value == ""){
-		error = 1;
+		hasError = true;
 		get("err_mname").innerHTML = "*Mother Name required ";
 	}
-	else if(get("mname").value.length < 3){
-		error = 1;
-		get("err_mname").innerHTML = "*Mother Name must be greater then 2 letter";
-	}
+	
+ 
         
 //=========================================blood ,ddate, ===================================
 
-        if(get("blood").value=="")
+        if(get("blood").selectedIndex == 0)
         {
           hasError = true;
           get("err_blood").innerHTML="*blood group required";
         }
+        
+        if(get("religion").selectedIndex == 0)
+        {
+          hasError = true;
+          get("err_religion").innerHTML="*Religion required";
+        }
 
-        if(get("date").value=="")
+      //ALL Dates Validations==================================================================
+
+
+        if(get("date").selectedIndex==0)
         {
           hasError = true;
           get("err_date").innerHTML="*Date required";
         }
-        if(get("Month").value=="")
+        if(get("Month").selectedIndex==0)
         {
           hasError = true;
           get("err_Month").innerHTML="*Month required";
         }
  
-        if(get("year").value=="")
+        if(get("year").selectedIndex==0)
         {
           hasError = true;
           get("err_year").innerHTML="*year required";
         }
-      
-      //===============================gender validation===================================================
 
-        if(!validategender()){
-        hasError = true;
-        get("err_gender").innerHTML = "*Gender Must be Required";
-    }
-    function validategender(){
-        var gender = document.querySelector('input[name="gender"]:checked');
-        if(gender == null){
-            return false;
+        // admission=========================
+
+         if(get("Adate").selectedIndex==0)
+        {
+          hasError = true;
+          get("err_Adate").innerHTML="*Date required";
         }
-        else{
-            return true;
+        if(get("AMonth").selectedIndex==0)
+        {
+          hasError = true;
+          get("err_AMonth").innerHTML="*Month required";
         }
-    }
+ 
+        if(get("Ayear").selectedIndex==0)
+        {
+          hasError = true;
+          get("err_Ayear").innerHTML="*year required";
+        }    
+      //====================Graduation==================================================
 
-    //==============================contact number ,  address ,image ==========================
+        if(get("Gdate").selectedIndex==0)
+        {
+          hasError = true;
+          get("err_Gdate").innerHTML="*Date required";
+        }
+        if(get("GMonth").selectedIndex==0)
+        {
+          hasError = true;
+          get("err_GMonth").innerHTML="*Month required";
+        }
+ 
+        if(get("Gyear").selectedIndex==0)
+        {
+          hasError = true;
+          get("err_Gyear").innerHTML="*year required";
+        }
+ 
+ 
+   //==============================contact number ,  address ,image ==========================
 
-    if(get("phone").value == ""){
+   if(get("phone").value == ""){
         hasError = true;
-        get("phone").innerHTML = "*Contact Number Must be Required";
+        get("err_phone").innerHTML = "*Contact Number Must be Required";
     }
     else if(isNaN(get("phone").value) == true){
         hasError = true;
@@ -120,25 +150,32 @@
         get("err_paddress").innerHTML = "*Present Address Must be Required";
     }
 
+ 
 
-
+      
+      //===============================gender ,Nation , Img validation===================================================
+ 
+        if(!validategender()){
+        hasError = true;
+        get("err_gender").innerHTML = "*Gender Must be Required";
+    } 
+ 
+  /* 
     if(get("img").files.length == 0){
         hasError = true;
         get("err_img").innerHTML = "*Image required";
-    }
-    else if(get("img").files[0].size >= 524288){
+    } */
+   /*  else if(get("img").files[0].size >= 524288){
        hasError = true;
         get("err_img").innerHTML = "*File size must be excately .5 MB or 512 KB";
     }
+ */
 
-    if(get("nation").value == ""){
-        hasError = 1;
+    if(!validateNation()){
+        hasError = true;
         get("err_nation").innerHTML = "*Must be need nationality";
     }
-    else if(get("nation").value.length < 3){
-        hasError = 1;
-        get("err_nation").innerHTML = "*nationality  2 letter";
-    }
+    
 
 
       return !hasError;
@@ -146,12 +183,61 @@
      }
 
 
+     function validateNation(){
+        var na = document.querySelector('input[name="Nationality"]:checked');
+        if(na == null){
+            return false;
+        }
+           return true;
+    }
+
+    function validategender(){
+        var gn = document.querySelector('input[name="gender"]:checked');
+        if(gn == null){
+            return false;
+        }
+         return true;
+    }
+
+
+
       function refresh()
       {
-        hasError=2;
+        hasError=false;
+
+       get("err_userid").innerHTML="";
+
+        get("err_name").innerHTML="";
+         get("err_email").innerHTML="";
+        get("err_email").innerHTML="";
+       get("err_blood").innerHTML="";
+       get("err_religion").innerHTML="";
+       get("err_gender").innerHTML="";
+
+
+        get("err_date").innerHTML="";
+       get("err_Month").innerHTML="";
+       get("err_year").innerHTML="";
+      get("err_Adate").innerHTML="";
+       get("err_AMonth").innerHTML="";
+      get("err_Ayear").innerHTML="";
+      get("err_Gdate").innerHTML="";
+       get("err_GMonth").innerHTML="";
+       get("err_Gyear").innerHTML="";
+        get("err_fname").innerHTML="";
+         get("err_mname").innerHTML="";
+
+        get("err_nation").innerHTML = "";
+       get("err_paddress").innerHTML = "";
+       get("err_address").innerHTML = "";
+       get("err_phone").innerHTML = ""; 
+       //get("err_img").innerHTML = ""; 
+
+
+
       }
 
-  </script>    
+  </script>        
 
   </head>
   <body>
@@ -174,13 +260,12 @@
                                             <table id="">
 
 
-<form class="" onsubmit=" return validate()" action="" method="post" enctype="multipart/form-data">
-
+                                            <form class="" onsubmit=" return validate()" action="" method="post" enctype="multipart/form-data">
 
 
   <tr>
   <td>Id</td>
-  <td>: <input  id="userid"  type="text" name="id" value="<?php echo $userid;?>" placeholder="Your id ...."> </td>
+  <td>: <input  id="userid"  type="text" name="id" value="<?php echo $userid;?>" placeholder="S****...."> </td>
   <td><span  id="err_userid" > <?php echo $err_userid;?> </span></td>
   </tr>
 
@@ -198,8 +283,9 @@
 
   <tr>
   <td>Gender</td>
-  <td>: <input type="radio" value="Male" <?php if($gender=="Male") echo "checked"; ?> name="gender"> Male <input name="gender" <?php if($gender=="Female") echo "checked"; ?> value="Female" type="radio"> Female </td>
-  <td><span id="err_gender"  > <?php echo $err_gender;?> </span></td>
+  <td>: <input type="radio" value="Male" <?php if($gender=="Male") echo "checked"; ?> name="gender"> Male 
+  <input name="gender" <?php if($gender=="Female") echo "checked"; ?> value="Female" type="radio"> Female </td>
+  <td><span id="err_gender"> <?php echo $err_gender;?> </span></td>
 </tr>
 <tr>
   <td>Blood Group :</td>
@@ -271,7 +357,7 @@ else {
 
     <tr>
       <td>Religion :</td>
-      <td>: <select id ="religion" name="religion"><option disabled selected>---select---</option>
+      <td>: <select  id="religion" name="religion"><option disabled selected>---select---</option>
         <?php
     foreach($array3 as $l)
     {
@@ -288,8 +374,9 @@ else {
 
       <tr>
         <td>Nationality</td>
-        <td>: <input type="radio" name="Nationality" value="Bangladeshi" <?php if($nation=="Bangladeshi") echo "checked"; ?> name="Nationality"> Bangladeshi <input name="Nationality" <?php if($nation=="Forigner") echo "checked"; ?> value="Forigner" type="radio"> Foriger </td>
-        <td><span id="err_nation" > <?php echo $err_nation;?> </span></td>
+        <td>: <input type="radio" name="Nationality" value="Bangladeshi" <?php if($nation=="Bangladeshi") echo "checked"; ?> > Bangladeshi 
+        <input name="Nationality" <?php if($nation=="Forigner") echo "checked"; ?> value="Forigner" type="radio"> Foriger </td>
+        <td><span id="err_nation"> <?php echo $err_nation;?> </span></td>
       </tr>
 
       <tr>
@@ -307,7 +394,7 @@ else {
 
     <tr>
       <td>Admission Date :</td>
-      <td>: <select id="date" name="Adate"><option disabled selected>---Date---</option>
+      <td>: <select id="Adate" name="Adate"><option disabled selected>---Date---</option>
         <?php
     for($i=1; $i<=31; $i++)
     {
@@ -322,7 +409,7 @@ else {
     ?>
       </select>
 
-        <select  id="Month" name="AMonth"> <option disabled selected>---Month---</option>
+        <select  id="AMonth" name="AMonth"> <option disabled selected>---Month---</option>
           <?php
             foreach($array as $p){
                 if($AMonth==$p){
@@ -334,7 +421,7 @@ else {
             }
           ?>
         </select>
-         <select id="year" name="Ayear">
+         <select id="Ayear" name="Ayear">
           <option disabled selected>---year---</option>
           <?php
   for($c=1920; $c<=2010; $c++)
@@ -351,9 +438,9 @@ else {
 
         </select>
       </td>
-      <td><span id="err_date" > <?php echo $err_Adating;?></span>
-        <span id="err_Month" ><?php echo $err_AMonth;?></span>
-          <span id="err_year" ><?php echo $err_Ayear;?> </span></td>
+      <td><span id="err_Adate" > <?php echo $err_Adating;?></span>
+        <span id="err_AMonth" ><?php echo $err_AMonth;?></span>
+          <span id="err_Ayear" ><?php echo $err_Ayear;?> </span></td>
 
     </tr>
 
@@ -361,7 +448,7 @@ else {
 
   <tr>
   <td>Graduation Date </td>
-  <td>: <select id="date" name="Gdate"><option disabled selected>---Date---</option>
+  <td>: <select id="Gdate" name="Gdate"><option disabled selected>---Date---</option>
     <?php
   for($i=1; $i<=31; $i++)
   {
@@ -374,7 +461,7 @@ else {
   ?>
   </select>
 
-    <select id="Month" name="GMonth"> <option disabled selected>---Month---</option>
+    <select id="GMonth" name="GMonth"> <option disabled selected>---Month---</option>
       <?php
         foreach($array as $p){
           if($GMonth==$p){
@@ -386,7 +473,7 @@ else {
       }
       ?>
     </select>
-     <select id="year" name="Gyear">
+     <select id="Gyear" name="Gyear">
       <option disabled selected>---year---</option>
       <?php
   for($j=1920; $j<=2010; $j++)
@@ -403,9 +490,9 @@ else {
 
     </select>
   </td>
-  <td><span  id="err_date" > <?php echo $err_Gdating;?></span>
-    <span id="err_Month" ><?php echo $err_GMonth;?></span>
-      <span id="err_year" ><?php echo $err_Gyear;?> </span></td>
+  <td><span  id="err_Gdate" > <?php echo $err_Gdating;?></span>
+    <span id="err_GMonth" ><?php echo $err_GMonth;?></span>
+      <span id="err_Gyear" ><?php echo $err_Gyear;?> </span></td>
 
   </tr>
 
@@ -422,13 +509,6 @@ else {
 
   </tr>
 
- <!--  <tr>
-    <td>Payment Statues </td>
-    <td>: <input type="text" name="payment" value="<?php echo $payment;?>" placeholder="Amount ...."> </td>
-    <td><span> <?php echo $err_payment;?> </span></td>
-
-  </tr>
- -->
   <tr>
   <td>Contact Number </td>
   <td> : <input id="phone" type="text" name="phone" value="<?php echo $phone;?>" placeholder="Number...."> </td>
@@ -436,7 +516,7 @@ else {
   </tr>
 <tr>
 <td>
-   <input id="img" type="file" name="image" id="image">
+   <input id="img" type="file" name="image">
    </td>
     <td> <span id=" err_img" > <?php echo $error_img;?></span> </td>
   </tr>
@@ -444,13 +524,13 @@ else {
 
 
   <tr>
-      <td colspan="2" align="right"><button type="submit" name="add_student" value="submit" id="button10">Insert</button>
-        <td colspan="2" align="right"><button type="reset" name="reset" value="Rest" id="button10">Reset</button>
+      <td colspan="2" align="right"><button type="submit" name="add_student" value="submit">ADD STUDENT</button>
+        <td colspan="2" align="right"><button type="reset" name="reset" value="Rest">  RESET   </button>
       </tr>
 
-      
+
     </form>
-    </table>
+      </table>
                                         </td>
                                     </tr>
                                 </table>

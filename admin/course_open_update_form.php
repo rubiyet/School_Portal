@@ -99,7 +99,6 @@
                                                         <td><span id="error_semester"><?php echo $error_semester;?></span></td>
                                                     </tr>
                                                     <tr>
-                                                    <tr>
                                                         <td align="right">
                                                             Change Teacher: 
                                                         </td>

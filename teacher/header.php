@@ -35,7 +35,7 @@
                             <td id="">
                                 <button onclick="myFunction()" id="headericon" class="dropbutton"><i class="fas fa-cog fa-lg"></i></button>
                                 <div id="myDropdown" class="dropdown-content">
-                                <a href="../16-31722-1/admin/passwordchange.php"><button type="submit" name="passwordchange" id="settingsicon">Password Change</button></a>
+                                <a href="18-37646-1_password_change.php"><button type="submit" name="passwordchange" id="settingsicon">Password Change</button></a>
                                 </div>
                             </td>
                             <td id="">
